@@ -5,22 +5,22 @@
             <user-comp></user-comp>
         </div>
         <div class="col-4">
-            user2
+            <user-comp></user-comp>
         </div>
         <div class="col-4">
-            user3
+            <user-comp></user-comp>
         </div>
     </div>
     <div class="row" style="height:10%;"></div>
     <div class="row" style="height:40%;">
         <div class="col-4">
-            user4
+            <user-comp></user-comp>
         </div>
         <div class="col-4">
-            user5
+            <user-comp></user-comp>
         </div>
         <div class="col-4">
-            user6
+            <user-comp></user-comp>
         </div>
     </div>
   </div>
