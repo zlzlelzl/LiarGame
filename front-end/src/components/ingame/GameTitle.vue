@@ -18,9 +18,7 @@
                         setting
                     </div>
                 </div>
-                
             </div>
-            <!-- <div class="col-3"></div> -->
         </div>
     </div>
     <div class="row" style="height:10%">
