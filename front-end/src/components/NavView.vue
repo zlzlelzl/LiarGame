@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="../../assets/nav/logo.jpg" alt="logo" id="logo" />
+        <img src="@/assets/nav/logo.jpg" alt="logo" id="logo" />
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -24,9 +24,13 @@
       </div>
     </div>
   </nav>
-  <router-view />
 </template>
 
+<script>
+export default {
+  name: "navbar",
+};
+</script>
 <style>
 #logo {
   height: 30px;

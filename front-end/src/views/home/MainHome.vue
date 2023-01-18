@@ -1,4 +1,5 @@
 <template>
+  <navbar />
   <div class="maintop">
     <div class="maintopwrapper">
       <h1>Liar Game</h1>
@@ -10,9 +11,10 @@
       <div class="mainbottomtitle">
         <h1>게임 모드</h1>
       </div>
-      <div class="mainbottomcardwrapper">
-        <div class="card" style="width: 35vw">
-          <div class="card-img-top modeone"></div>
+      <div class="mainbottomcardwrapper row">
+        <!-- <div class="card g-col" style="width: 35vw"> -->
+        <div class="card col-sm-5 firstcard">
+          <div class="card-img-top modeone"><div class="cardframe"></div></div>
           <div class="card-body">
             <h5 class="card-title">일반 모드</h5>
             <p class="card-text">
@@ -21,8 +23,9 @@
             </p>
           </div>
         </div>
-        <div class="card" style="width: 35vw">
-          <div class="card-img-top modetwo"></div>
+        <!-- <div class="col-sm-3"></div> -->
+        <div class="card col-sm-5">
+          <div class="card-img-top modetwo"><div class="cardframe"></div></div>
           <div class="card-body">
             <h5 class="card-title">스파이 모드</h5>
             <p class="card-text">
@@ -37,8 +40,10 @@
 </template>
 
 <script>
+import navbar from "@/components/NavView.vue";
+
 export default {
-  components: {},
+  components: { navbar },
   data() {
     return {};
   },
@@ -51,8 +56,9 @@ export default {
 
 <style scoped>
 .maintop {
-  background-image: url(../../assets/home/glass-top.png),
-    url(../../assets/home/glass-bottom.png), url(../../assets/home/home-top.jpg);
+  background-image: url(../../assets/home/glass-top-b.png),
+    url(../../assets/home/glass-bottom-a.png),
+    url(../../assets/home/home-top.jpg);
   height: 100vh;
   background-position: 0 0, bottom, 0 0;
   background-repeat: no-repeat;
@@ -87,6 +93,10 @@ export default {
 
 .card {
   background-color: #332332;
+  padding: 0px;
+}
+.firstcard {
+  margin-right: 15%;
 }
 .modeone {
   height: 45vh;
@@ -98,6 +108,24 @@ export default {
   background-image: url(../../assets/home/mode-two.jpg);
   background-size: cover;
 }
+.cardframe {
+  height: 45vh;
+  background-image: url(../../assets/home/mode-frame.png);
+  background-size: 100% 212%;
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+.cardframe:hover {
+  height: 45vh;
+  background-image: url(../../assets/home/mode-frame.png);
+  background-size: 100% 212%;
+  background-position: 0px 95%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 10s;
+}
+
 .card-title {
   color: #ede0ce;
 }
