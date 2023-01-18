@@ -1,10 +1,11 @@
 <template>
   <div class="footer">
     <div class="row" style="height:100%">
-        <div class="col-5"></div>
-        <div class="col-2">ready</div>
+        <div class="col-2">create</div>
         <div class="col-3"></div>
-        <div class="col-2">out</div>
+        <div class="col-2">page</div>
+        <div class="col-1"></div>
+        <div class="col-4">join</div>
     </div>
   </div>
 </template>

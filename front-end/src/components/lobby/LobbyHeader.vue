@@ -15,7 +15,7 @@
                     <div class="col-9">
                     </div>
                     <div class="col-3">
-                        setting
+                        refresh
                     </div>
                 </div>
             </div>

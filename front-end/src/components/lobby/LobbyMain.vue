@@ -1,29 +1,43 @@
 
 <template>
   <div class="main">
-    <div class="row" style="height:40%;">
-        <div class="col-4">
+    <div class="row" style="height:2.5%;"></div>
+    <div class="row" style="height:20%;">
+        <div class="col-6">
             <user-comp></user-comp>
         </div>
-        <div class="col-4">
-            <user-comp></user-comp>
-        </div>
-        <div class="col-4">
-            <user-comp></user-comp>
-        </div>
-    </div>
-    <div class="row" style="height:10%;"></div>
-    <div class="row" style="height:40%;">
-        <div class="col-4">
-            <user-comp></user-comp>
-        </div>
-        <div class="col-4">
-            <user-comp></user-comp>
-        </div>
-        <div class="col-4">
+        <div class="col-6">
             <user-comp></user-comp>
         </div>
     </div>
+    <div class="row" style="height:5%;"></div>
+    <div class="row" style="height:20%;">
+        <div class="col-6">
+            <user-comp></user-comp>
+        </div>
+        <div class="col-6">
+            <user-comp></user-comp>
+        </div>
+    </div>
+    <div class="row" style="height:5%;"></div>
+    <div class="row" style="height:20%;">
+        <div class="col-6">
+            <user-comp></user-comp>
+        </div>
+        <div class="col-6">
+            <user-comp></user-comp>
+        </div>
+    </div>
+    <div class="row" style="height:5%;"></div>
+    <div class="row" style="height:20%;">
+        <div class="col-6">
+            <user-comp></user-comp>
+        </div>
+        <div class="col-6">
+            <user-comp></user-comp>
+        </div>
+    </div>
+    <div class="row" style="height:2.5%;"></div>
   </div>
 </template>
 
