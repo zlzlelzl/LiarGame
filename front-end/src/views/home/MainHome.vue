@@ -121,9 +121,6 @@ export default {
   background-size: 100% 212%;
   background-position: 0px 95%;
   background-repeat: no-repeat;
-  opacity: 0;
-  transition-property: opacity;
-  transition-duration: 10s;
 }
 
 .card-title {
