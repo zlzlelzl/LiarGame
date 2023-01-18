@@ -8,14 +8,14 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    component: () => import("../views/AboutView.vue"),
+    path: "/ingame",
+    name: "ingame",
+    component: () => import("../views/InGame.vue"),
   },
   {
-    path: "/about2",
-    name: "about2",
-    component: () => import("../views/AboutView2.vue"),
+    path: "/inlobby",
+    name: "inlobby",
+    component: () => import("../views/InLobby.vue"),
   },
 ];
 
