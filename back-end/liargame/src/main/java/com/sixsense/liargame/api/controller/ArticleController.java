@@ -22,12 +22,20 @@ public class ArticleController {
     }
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<ArticleResp>> getArticle(@PathVariable("id") Long id){
-        return ResponseEntity.ok().body(articleService.selectArticlekey(id));
+    @GetMapping("/{page}")
+    public ResponseEntity<List<ArticleResp>> getArticle(@PathVariable("page") Long page){
+        return ResponseEntity.ok().body(articleService.selectArticlepage(page));
+    }
+
+    @GetMapping("/{key}")
+    public ResponseEntity<List<ArticleResp>> getArticleByKey(@PathVariable("key") String key){
+        return ResponseEntity.ok().body(articleService.selectArticlekey(key));
+    }
+
+    @GetMapping("/{word}")
+    public ResponseEntity<List<ArticleResp>> getArticleByWord(@PathVariable("word") String word){
+        return ResponseEntity.ok().body(articleService.selectArticleword(word));
     }
 }
 
 
-public class ArticleController {
-}
