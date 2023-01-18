@@ -14,6 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @ToString
 public class ArticleResp {
+    private long id;
     private String title;
     private String content;
     private boolean isNotice;
@@ -23,7 +24,8 @@ public class ArticleResp {
         return dateFormat.format(date);
     }
 
-    public ArticleResp(String title, String content, boolean isNotice) {
+    public ArticleResp(long id, String title, String content, boolean isNotice) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.isNotice = isNotice;
