@@ -16,13 +16,16 @@ import javax.servlet.http.HttpServletRequest;
 public class ArticleController {
     private final ArticleService articleService;
     @PostMapping
-    public ResponseEntity<?> writeArticle(@RequestBody ArticleAllReq articleAllReq, HttpServletRequest request){
-        articleService.insertArticle(articleAllReq);
+    public ResponseEntity<?> writeArticle(HttpServletRequest request, @RequestBody ArticleDetailReq articleDetailReq){
+        articleService.insertArticle(articleDetailReq);
         return ResponseEntity.ok().build();
     }
 
 
     @GetMapping("/{id}")
+    public ResponseEntity<List<ArticleResp>> getArticle(@PathVariable("id") Long id){
+        return ResponseEntity.ok().body(articleService.selectArticlekey(id));
+    }
 }
 
 
