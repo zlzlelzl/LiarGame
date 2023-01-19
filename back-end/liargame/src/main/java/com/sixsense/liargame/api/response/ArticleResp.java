@@ -3,6 +3,7 @@ package com.sixsense.liargame.api.response;
 import com.sixsense.liargame.common.model.response.UserDto;
 import lombok.*;
 import java.util.List;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,10 +25,4 @@ public class ArticleResp {
         return dateFormat.format(date);
     }
 
-    public ArticleResp(long id, String title, String content, boolean isNotice) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.isNotice = isNotice;
-    }
 }
