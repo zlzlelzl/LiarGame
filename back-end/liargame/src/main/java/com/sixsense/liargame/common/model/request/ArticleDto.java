@@ -1,8 +1,6 @@
 package com.sixsense.liargame.common.model.request;
 
 import lombok.*;
-import com.sixsense.liargame.db.entity.Article;
-import com.sixsense.liargame.db.entity.User;
 
 @Getter
 @Setter
@@ -10,7 +8,10 @@ import com.sixsense.liargame.db.entity.User;
 @NoArgsConstructor
 @ToString
 public class ArticleDto {
+    private Long id;
     private Long userId;
     private boolean isNotice;
-
+    private String title;
+    private String content;
+    private Integer viewCnt;
 }
