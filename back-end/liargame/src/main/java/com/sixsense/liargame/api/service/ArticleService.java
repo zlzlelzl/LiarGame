@@ -13,11 +13,20 @@ public interface ArticleService {
 
     void updateArticle(ArticleDetailReq article);
 
+    ArticleResp getArticle(Long id);
+
     List<ArticleResp> selectArticlepage(Long page);
 
     List<ArticleResp> selectArticlekey(String key);
 
     List<ArticleResp> selectArticleword(String word);
 
-
+    default ArticleResp toResp(Article article){
+        ArticleResp resp = ArticleResp.builder()
+                .id(article.getId())
+                .title(article.getTitle())
+                .content(article.getContent())
+                .
+                .build();
+    }
 }

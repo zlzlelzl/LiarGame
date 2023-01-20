@@ -2,8 +2,7 @@ package com.sixsense.liargame.db.entity;
 
 import lombok.*;
 import javax.persistence.*;
-import java.sql.Timestamp;
-import org.hibernate.annotations.CreationTimestamp;
+import com.sixsense.liargame.common.model.request.CommentDto;
 
 @Entity
 @Getter
@@ -11,26 +10,34 @@ import org.hibernate.annotations.CreationTimestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Comment {
+public class Comment extends Time {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
 
+    //@Column(name = "user_id")
+    private Long userId;
+
+    //@Column(name = "user_name")
+    //private String userName;
+
     //@Column(name = "comment")
     private String comment;
 
-    //@Column(name = "date", nullable = false)
-    private String date;
-    //@CreationTimestamp
-    //private Timestamp date;
+    //@Column(name = "article_id")
+    private Long articleId;
 
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    private Article article;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "article_id")
+//    private Article article;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
+    public static Comment toSaveComment(CommentDto commentDto) {
+        Comment comment = new Comment();
+        comment.setComment(commentDto.getComment());
+        comment.setUserId(commentDto.getUserId());
+        //comment.setUserName(commentDto.getUserName());
+        comment.setArticleId(commentDto.getArticleId());
+        return comment;
+    }
 }
