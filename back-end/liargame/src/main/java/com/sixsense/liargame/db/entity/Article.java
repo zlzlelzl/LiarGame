@@ -16,7 +16,7 @@ import java.util.List;
 public class Article extends Time{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="article_id")
+    //@Column(name="article_id")
     private Long id;
 
     //@Column(name = "title")
