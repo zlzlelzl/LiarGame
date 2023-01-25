@@ -10,9 +10,12 @@ import java.time.LocalDateTime;
 import javax.persistence.*;
 import java.util.List;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Getter
-@NoArgsConstructor
+@Setter
+@Builder
 public class Article extends Time{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,21 +31,23 @@ public class Article extends Time{
     //@Column(name = "isNotice", nullable = false)
     private Boolean isNotice;
 
-    //@Column(name = "hits", nullable = false)
+    //@Column(name = "writer")
+    private Long writer;
+
+    //@Column(name = "hits", nullable = false, columnDefinition = "integer default 0")
     private Integer viewCnt;
 
-    //@Column(name = "user_id", nullable = false)
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Builder
-    public Article(Long id, String title, String content, Boolean isNotice, Integer viewCnt, Long userId) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.isNotice = isNotice;
-        this.viewCnt = viewCnt;
-        this.userId = userId;
+    public void userid(){
+        this.writer = user.getId();
     }
+
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "article")
+    @OrderBy("id asc")
+    private List<Comment> comments;
 
     public void update(ArticleModifyQuery query) {
         this.title = query.getTitle();

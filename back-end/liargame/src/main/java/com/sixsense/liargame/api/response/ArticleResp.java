@@ -17,7 +17,7 @@ public class ArticleResp {
     private String title;
     private String content;
     private boolean isNotice;
-    private String name;
+    private Long writer;
     private Integer viewCnt;
 
     private LocalDateTime createdAt;

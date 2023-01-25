@@ -5,8 +5,12 @@ import com.sixsense.liargame.api.response.ArticleResp;
 import com.sixsense.liargame.api.service.ArticleService;
 import com.sixsense.liargame.db.entity.Article;
 import com.sixsense.liargame.db.repository.ArticleRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,24 +40,47 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public void updateArticle(ArticleDetailReq article) {
-        //System.out.println("update");
+        articleRepository.save(Article.builder()
+              .title(article.getTitle())
+              .content(article.getContent())
+                .build());
     }
 
     @Override
-    @Transactional
     public ArticleResp getArticle(Long id) {
-        Article article = articleRepository.findById(id).orElseThrow();
-        article.updateViewCnt();
+        Optional<Article> article = articleRepository.findById(id);
+        if (article.isPresent()) {
+            return ArticleResp.builder()
+                    .id(article.get().getId())
+                    .title(article.get().getTitle())
+                    .content(article.get().getContent())
+                    .build();
+        }
         return null;
     }
 
     @Override
-    public List<ArticleResp> selectArticlepage(Long page) {
+    public List<ArticleResp> findArticles(int page) {
         return null;
+    }
+
+    @Override
+    public List<ArticleResp> findArticles(int page, Pageable pageable) {
+        Page<Article> articlePage = articleRepository.findAll(PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "id")));
+        List<Article> articles = articlePage.getContent();
+        return (List<ArticleResp>) articles.stream().map(article -> ArticleResp.builder()
+                .id(article.getId())
+                .title(article.getTitle())
+                .writer(article.getWriter())
+                .updatedAt(article.getUpdatedAt())
+                .viewCnt(article.getViewCnt())
+                .build());
     }
 
     @Override
     public List<ArticleResp> selectArticlekey(String key) {
+
+
         return null;
     }
 
@@ -61,4 +88,5 @@ public class ArticleServiceImpl implements ArticleService {
     public List<ArticleResp> selectArticleword(String word) {
         return null;
     }
+
 }

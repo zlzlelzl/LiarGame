@@ -6,4 +6,6 @@ import java.util.List;
 import java.util.Set;
 public interface ArticleRepositorySupport {
     List<Article> findByArticleSet(Set<Long> set);
+
+    List<Article> findByTitleContaining(String key);
 }

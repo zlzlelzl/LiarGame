@@ -5,6 +5,8 @@ import com.sixsense.liargame.api.request.ArticleDetailReq;
 import com.sixsense.liargame.api.response.ArticleResp;
 import com.sixsense.liargame.api.service.ArticleService;
 import lombok.*;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -22,15 +24,15 @@ public class ArticleController {
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping("/page/{page}")
-//    public ResponseEntity<List<ArticleResp>> getArticle(@PathVariable("page") Long page){
-//        return ResponseEntity.ok().body(articleService.selectArticlepage(page));
-//    }
-//
-//    @GetMapping("/key/{key}")
-//    public ResponseEntity<List<ArticleResp>> getArticleByKey(@PathVariable("key") String key){
-//        return ResponseEntity.ok().body(articleService.selectArticlekey(key));
-//    }
+    @GetMapping("/page/{page}")
+    public ResponseEntity<List<ArticleResp>> findArticles(int page, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        return ResponseEntity.ok().body(articleService.findArticles(page));
+    }
+
+    @GetMapping("/key/{key}")
+    public ResponseEntity<List<ArticleResp>> getArticleByKey(@PathVariable("key") String key){
+        return ResponseEntity.ok().body(articleService.selectArticlekey(key));
+    }
 //
 //    @GetMapping("/word/{word}")
 //    public ResponseEntity<List<ArticleResp>> getArticleByWord(@PathVariable("word") String word){
