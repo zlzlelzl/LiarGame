@@ -11,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class CommentReq {
     private String content;
-    private int userId;
+    private Long userId;
     private String createdAt;
+    private String updatedAt;
 }

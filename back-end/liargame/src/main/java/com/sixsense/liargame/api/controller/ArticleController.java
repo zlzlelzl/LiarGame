@@ -19,7 +19,6 @@ public class ArticleController {
     @PostMapping("/")
     public ResponseEntity writeArticle( HttpServletRequest request, @RequestBody ArticleDetailReq articleDetailReq){
         articleService.insertArticle(articleDetailReq);
-        System.out.println("POST_DONE");
         return ResponseEntity.ok().build();
     }
 
@@ -38,12 +37,12 @@ public class ArticleController {
 //        return ResponseEntity.ok().body(articleService.selectArticleword(word));
 //    }
 //
-//    @DeleteMapping("/delete/{id}")
-//    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
-//        articleService.deleteArticle(id);
-//        return ResponseEntity.ok().build();
-//    }
-//
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
+        articleService.deleteArticle(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 //    @PutMapping("/{id}")
 //    public ResponseEntity<?> updateArticle(@PathVariable("id") Long id, @RequestBody ArticleDetailReq article) {

@@ -20,13 +20,18 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void insertArticle(ArticleDetailReq article) {
-        //System.out.println("created article");
+    public void insertArticle(ArticleDetailReq articleDetail) {
+        Article article = Article.builder()
+                .title(articleDetail.getTitle())
+                .content(articleDetail.getContent())
+                .build();
+        Long articleId = articleRepository.save(article).getId();
+
     }
 
     @Override
     public void deleteArticle(Long id) {
-
+        articleRepository.deleteById(id);
     }
 
     @Override
