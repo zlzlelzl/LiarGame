@@ -15,5 +15,4 @@ public class PlayBaseTime {
     @CreatedDate
     private LocalDateTime playedAt;
 
-
 }

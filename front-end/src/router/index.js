@@ -8,9 +8,26 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    component: () => import("../views/AboutView.vue"),
+    path: "/ingame",
+    name: "ingame",
+    component: () => import("../views/InGame.vue"),
+  },
+  {
+    path: "/inlobby",
+    name: "inlobby",
+    component: () => import("../views/InLobby.vue"),
+  },
+  {
+    path: "/main",
+    name: "main",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/home/MainHome.vue"),
+  },
+  {
+    path: "/lobby",
+    name: "lobby",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/lobby/InLobby.vue"),
   },
 ];
 

@@ -1,27 +1,28 @@
 <template>
-  <div class="title" style="height:100%">
-    <div class="row" style="height:10%">
+  <div class="m-0 p-0 title" style="height:100%">
+    <div class="m-0 p-0 row" style="height:10%">
     </div>
-    <div class="row" style="height:80%">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <div class="rounded-3">
+    <div class="m-0 p-0 row" style="height:80%">
+        <div class="m-0 p-0 col-3"></div>
+        <div class="m-0 p-0 col-6">
+            <div class="m-0 p-0 rounded-3" id="title">
                 title
             </div>
         </div>
-        <div class="col-3">
-            <div class="rounded-3">
-                <div class="row">
-                    <div class="col-9">
+        <div class="m-0 p-0 col-3">
+            <div class="m-0 p-0 rounded-3">
+                <div class="m-0 p-0 row">
+                    <div class="m-0 p-0 col-7">
                     </div>
-                    <div class="col-3">
+                    <div class="m-10 p-10 col-5">
                         setting
+                        <img src="@/assets/icon/icon_setting.png" alt="" id="icon_setting">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row" style="height:10%">
+    <div class="m-0 p-0 row" style="height:10%">
     </div>
   </div>
 </template>
@@ -37,4 +38,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+#icon_setting{
+  width:30%;
+  height:20px;
+  margin-left: 15px;
+}
+#title{
+  text-align: center;
+}
+</style>
