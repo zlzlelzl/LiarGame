@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Set;
 
-//import static com.sixsense.liargame.db.entity.QArticle.article;
+import static com.sixsense.liargame.db.entity.QArticle.article;
 
 @Repository
 public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
@@ -27,5 +27,5 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
                 .where(article.id.in(set))
                 .orderBy(new OrderSpecifier<>(Order.DESC, article.id))
                 .fetch();
-
+    }
 }

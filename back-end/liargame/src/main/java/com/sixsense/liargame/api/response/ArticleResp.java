@@ -5,10 +5,6 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -22,14 +18,10 @@ public class ArticleResp {
     private String content;
     private boolean isNotice;
     private String name;
+    private Integer viewCnt;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    private String DateTimestamp(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
 
 }

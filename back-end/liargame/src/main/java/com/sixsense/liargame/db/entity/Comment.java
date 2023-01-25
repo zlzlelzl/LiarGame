@@ -16,12 +16,6 @@ public class Comment extends Time {
     @Column(name = "comment_id")
     private Long id;
 
-    //@Column(name = "user_id")
-    private Long userId;
-
-    //@Column(name = "user_name")
-    //private String userName;
-
     //@Column(name = "comment")
     private String comment;
 
@@ -32,6 +26,13 @@ public class Comment extends Time {
 //    @JoinColumn(name = "article_id")
 //    private Article article;
 
+    @Column(name = "user_id")
+    private Long userId;
+
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "user_id")
+    //private User user;
+
     public static Comment toSaveComment(CommentDto commentDto) {
         Comment comment = new Comment();
         comment.setComment(commentDto.getComment());
@@ -39,5 +40,9 @@ public class Comment extends Time {
         //comment.setUserName(commentDto.getUserName());
         comment.setArticleId(commentDto.getArticleId());
         return comment;
+    }
+
+    public void updateComment(String comment){
+        this.comment = comment;
     }
 }
