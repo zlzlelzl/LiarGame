@@ -5,6 +5,7 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sixsense.liargame.db.entity.Article;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -27,5 +28,19 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
                 .where(article.id.in(set))
                 .orderBy(new OrderSpecifier<>(Order.DESC, article.id))
                 .fetch();
+    }
+
+    @Override
+    @Transactional
+    public List<Article> findByTitleContaining(String key) {
+        List<Article> articleList = ArticleRepositorySupport.findByTitleContaining(key);
+        return articleList;
+    }
+
+    @Override
+    @Transactional
+    public List<Article> findByTitleContaining(String key, int limit) {
+        List<Article> articleList = ArticleRepositorySupportImpl.findByTitleContaining(key, limit);
+        return articleList;
     }
 }

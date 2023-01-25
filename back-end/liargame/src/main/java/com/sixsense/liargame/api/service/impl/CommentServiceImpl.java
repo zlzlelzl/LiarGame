@@ -1,11 +1,13 @@
 package com.sixsense.liargame.api.service.impl;
 
+import com.sixsense.liargame.api.response.CommentResp;
 import com.sixsense.liargame.api.service.CommentService;
 import com.sixsense.liargame.db.entity.*;
 import com.sixsense.liargame.db.repository.*;
 import com.sixsense.liargame.api.request.CommentReq;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -34,5 +36,11 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.getOne(id);
         comment.setComment(commentReq.getContent());
         commentRepository.save(comment);
+    }
+
+    @Override
+    public List<CommentResp> selectArticle(Long userId) {
+
+        return null;
     }
 }

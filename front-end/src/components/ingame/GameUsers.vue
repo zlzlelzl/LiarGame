@@ -40,6 +40,7 @@
 
 <script>
 import UserComp from "@/components/ingame/UserComp.vue"
+import axios from "axios";
 
 export default {
   components: { UserComp },
@@ -47,6 +48,24 @@ export default {
   created() {
     
   },
+  methods:{
+    async getToken() {
+        const sessionId = await this.createSession(this.state.mySessionId);
+        return await this.createToken(sessionId);
+    },
+    async createSession(sessionId) {
+        const response = await axios.post(this.APPLICATION_SERVER_URL + 'api/sessions', { customSessionId: sessionId }, {
+            headers: { 'Content-Type': 'application/json', },
+        });
+        return response.data; // The sessionId
+    },
+    async createToken(sessionId) {
+        const response = await axios.post(this.APPLICATION_SERVER_URL + 'api/sessions/' + sessionId + '/connections', {}, {
+            headers: { 'Content-Type': 'application/json', },
+        });
+        return response.data; // The token
+    }
+  }
 }
 </script>
 
