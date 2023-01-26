@@ -24,11 +24,11 @@ public class ArticleController {
 //        return ResponseEntity.ok().body(articleService.getArticles());
 //    }
 
-//    @PostMapping("/")
-//    public ResponseEntity writeArticle( HttpServletRequest request, @RequestBody ArticleDetailReq articleDetailReq){
-//        articleService.insertArticle(articleDetailReq);
-//        return ResponseEntity.ok().build();
-//    }
+    @PostMapping
+    public ResponseEntity<?> writeArticle(HttpServletRequest request, @RequestBody ArticleDetailReq articleDetailReq){
+        articleService.insertArticle(articleDetailReq);
+        return ResponseEntity.ok().build();
+    }
 
 //    @GetMapping("/page/{page}")
 //    public ResponseEntity<List<ArticleResp>> findArticles(int page, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){

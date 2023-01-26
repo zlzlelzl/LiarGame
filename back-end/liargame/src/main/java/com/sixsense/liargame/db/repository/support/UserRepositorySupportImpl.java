@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Set;
 
-import static com.sixsense.liargame.db.entity.QUser.user;
 
 
 @Repository
@@ -21,6 +20,7 @@ public class UserRepositorySupportImpl implements UserRepositorySupport {
 
     @Override
     public List<User> findBySet(Set<Long> set) {
+
         return query
                 .select(user)
                 .from(user)

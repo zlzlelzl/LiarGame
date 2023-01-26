@@ -9,8 +9,8 @@ import lombok.*;
 @ToString
 public class ArticleDto {
     private Long id;
-    private Long userId;
-    private boolean isNotice;
+    private Long userId; //writer
+    private Boolean isNotice;
     private String title;
     private String content;
     private Integer viewCnt;
