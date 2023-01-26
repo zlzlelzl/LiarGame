@@ -1,4 +1,4 @@
-package com.sixsense.liargame.common.auth;
+package com.sixsense.liargame.security.auth;
 
 public interface JwtProperties {
     String SECRET = "***REMOVED***"; // 우리 서버만 알고 있는 비밀값
