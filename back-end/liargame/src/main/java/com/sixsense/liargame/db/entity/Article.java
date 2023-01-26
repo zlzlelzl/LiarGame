@@ -41,17 +41,13 @@ public class Article extends Time{
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void userid(){
-        this.writer = user.getId();
-    }
-
-    public Article(Long id, String title, String content, Boolean isNotice, Long writer, Integer viewCnt){
+    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.isNotice = isNotice;
-        this.writer = writer;
-
+        this.writer = user.getId();
+        this.viewCnt = viewCnt;
     }
 
 
