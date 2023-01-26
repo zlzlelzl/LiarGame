@@ -1,6 +1,6 @@
 package com.sixsense.liargame.api.response;
 
-import com.sixsense.liargame.common.model.response.ArticleResp;
+//import com.sixsense.liargame.common.model.response.ArticleResp;
 import lombok.*;
 
 import java.time.LocalDateTime;

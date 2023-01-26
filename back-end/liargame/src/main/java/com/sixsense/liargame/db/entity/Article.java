@@ -45,6 +45,16 @@ public class Article extends Time{
         this.writer = user.getId();
     }
 
+    public Article(Long id, String title, String content, Boolean isNotice, Long writer, Integer viewCnt){
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.isNotice = isNotice;
+        this.writer = writer;
+
+    }
+
+
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "article")
     @OrderBy("id asc")
     private List<Comment> comments;

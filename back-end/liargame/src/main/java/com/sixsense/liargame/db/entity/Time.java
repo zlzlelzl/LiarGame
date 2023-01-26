@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Setter
 public class Time {
     @CreatedDate
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
