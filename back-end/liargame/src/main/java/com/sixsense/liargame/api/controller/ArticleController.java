@@ -18,33 +18,41 @@ import javax.servlet.http.HttpServletRequest;
 public class ArticleController {
     private final ArticleService articleService;
 
-    @PostMapping("/")
-    public ResponseEntity writeArticle( HttpServletRequest request, @RequestBody ArticleDetailReq articleDetailReq){
-        articleService.insertArticle(articleDetailReq);
-        return ResponseEntity.ok().build();
-    }
+    // get list as restful
+//    @GetMapping("/")
+//    public ResponseEntity<List<ArticleResp>> getArticles(){
+//        return ResponseEntity.ok().body(articleService.getArticles());
+//    }
 
-    @GetMapping("/page/{page}")
-    public ResponseEntity<List<ArticleResp>> findArticles(int page, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
-        return ResponseEntity.ok().body(articleService.findArticles(page));
-    }
+//    @PostMapping("/")
+//    public ResponseEntity writeArticle( HttpServletRequest request, @RequestBody ArticleDetailReq articleDetailReq){
+//        articleService.insertArticle(articleDetailReq);
+//        return ResponseEntity.ok().build();
+//    }
 
-    @GetMapping("/key/{key}")
-    public ResponseEntity<List<ArticleResp>> getArticleByKey(@PathVariable("key") String key){
-        return ResponseEntity.ok().body(articleService.selectArticlekey(key));
-    }
+//    @GetMapping("/page/{page}")
+//    public ResponseEntity<List<ArticleResp>> findArticles(int page, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+//        System.out.println();
+//
+//        return ResponseEntity.ok().body(articleService.findArticles(page));
+//    }
+//
+//    @GetMapping("/key/{key}")
+//    public ResponseEntity<List<ArticleResp>> getArticleByKey(@PathVariable("key") String key){
+//        return ResponseEntity.ok().body(articleService.selectArticlekey(key));
+//    }
 //
 //    @GetMapping("/word/{word}")
 //    public ResponseEntity<List<ArticleResp>> getArticleByWord(@PathVariable("word") String word){
 //        return ResponseEntity.ok().body(articleService.selectArticleword(word));
 //    }
 //
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
-        articleService.deleteArticle(id);
-        return ResponseEntity.ok().build();
-    }
-
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
+//        articleService.deleteArticle(id);
+//        return ResponseEntity.ok().build();
+//    }
+//
 
 //    @PutMapping("/{id}")
 //    public ResponseEntity<?> updateArticle(@PathVariable("id") Long id, @RequestBody ArticleDetailReq article) {
