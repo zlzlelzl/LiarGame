@@ -4,13 +4,15 @@ import lombok.*;
 import javax.persistence.*;
 import com.sixsense.liargame.common.model.request.CommentDto;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Comment extends Time {
+public class Comment extends CommunityBaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
@@ -33,7 +35,10 @@ public class Comment extends Time {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public void updateComment(String comment){
+    public void updateComment(String comment, LocalDateTime updatedAt){
         this.comment = comment;
+        this.setUpdatedAt(updatedAt);
     }
+
+
 }

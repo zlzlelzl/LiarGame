@@ -5,15 +5,15 @@ import com.sixsense.liargame.api.response.ArticleResp;
 import com.sixsense.liargame.api.service.ArticleService;
 import com.sixsense.liargame.db.entity.Article;
 import com.sixsense.liargame.db.repository.ArticleRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import com.sixsense.liargame.db.repository.support.ArticleRepositorySupportImpl;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
@@ -24,26 +24,41 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void insertArticle(ArticleDetailReq articleDetail) {
-        Article article = Article.builder()
-                .title(articleDetail.getTitle())
-                .content(articleDetail.getContent())
-                .build();
-        Long articleId = articleRepository.save(article).getId();
+    @Transactional
+    public Long insertArticle(final ArticleDetailReq articleDetail) {
+        Article article = articleRepository.save(articleDetail.articleToEntity());
+        return article.getId();
+//        Article article = Article.builder()
+//                .title(articleDetail.getTitle())
+//                .content(articleDetail.getContent())
+//                .isNotice(articleDetail.getIsNotice())
+//                .writer(articleDetail.getWriter())
+//                .createdAt(LocalDateTime.now())
+//                .updatedAt(LocalDateTime.now())
+//                .build();
+//        Long articleId = articleRepository.save(article).getId();
+    }
 
+    @Override
+    public List<ArticleResp> findAll(){
+        Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
+        List<Article> articles = articleRepository.findAll(sort);
+        return articles.stream().map(ArticleResp::new).collect(Collectors.toList());
     }
 
     @Override
     public void deleteArticle(Long id) {
-        articleRepository.deleteById(id);
+        Optional<Article> article = articleRepository.findById(id);
+        articleRepository.delete(article.get());
+        //articleRepository.deleteById(id);
     }
 
     @Override
-    public void updateArticle(ArticleDetailReq article) {
-        articleRepository.save(Article.builder()
-              .title(article.getTitle())
-              .content(article.getContent())
-                .build());
+    @Transactional
+    public Long updateArticle(final Long id, final ArticleDetailReq article) {
+        Article article1 = articleRepository.findById(id).get();
+        article1.updateArticle(article.getTitle(), article.getContent(), article.getIsNotice(), article.getUpdatedAt());
+        return id;
     }
 
     @Override
@@ -64,18 +79,18 @@ public class ArticleServiceImpl implements ArticleService {
         return null;
     }
 
-    @Override
-    public List<ArticleResp> findArticles(int page, Pageable pageable) {
-        Page<Article> articlePage = articleRepository.findAll(PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "id")));
-        List<Article> articles = articlePage.getContent();
-        return (List<ArticleResp>) articles.stream().map(article -> ArticleResp.builder()
-                .id(article.getId())
-                .title(article.getTitle())
-                .writer(article.getWriter())
-                .updatedAt(article.getUpdatedAt())
-                .viewCnt(article.getViewCnt())
-                .build());
-    }
+//    @Override
+//    public List<ArticleResp> findArticles(int page, Pageable pageable) {
+//        Page<Article> articlePage = articleRepository.findAll(PageRequest.of(page - 1, 10, Sort.by(Sort.Direction.DESC, "id")));
+//        List<Article> articles = articlePage.getContent();
+//        return (List<ArticleResp>) articles.stream().map(article -> ArticleResp.builder()
+//                .id(article.getId())
+//                .title(article.getTitle())
+//                .writer(article.getWriter())
+//                .updatedAt(article.getUpdatedAt())
+//                .viewCnt(article.getViewCnt())
+//                .build());
+//    }
 
     @Override
     public List<ArticleResp> selectArticlekey(String key) {

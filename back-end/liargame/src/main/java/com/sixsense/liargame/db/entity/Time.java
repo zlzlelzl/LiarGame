@@ -20,12 +20,10 @@ public class Time {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
-//    @CreationTimestamp
-//    @Column(name = "createdAt", updatable = false)
-//    private LocalDateTime createdTimestamp;
-//
-//    @UpdateTimestamp
-//    @Column(name = "updatedAt", insertable = false)
-//    private LocalDateTime updatedTimestamp;
+    public LocalDateTime setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+        return updatedAt;
+    }
+
 }
 

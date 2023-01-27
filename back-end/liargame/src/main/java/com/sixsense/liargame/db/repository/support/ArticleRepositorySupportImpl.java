@@ -33,14 +33,21 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
     @Override
     @Transactional
     public List<Article> findByTitleContaining(String key) {
-        List<Article> articleList = ArticleRepositorySupport.findByTitleContaining(key);
-        return articleList;
+        List<Article> articleList;
+        //articleList = ArticleRepositorySupport.findByTitleContaining(key);
+
+        //return articleList;
+        return null;
     }
 
-    @Override
-    @Transactional
-    public List<Article> findByTitleContaining(String key, int limit) {
-        List<Article> articleList = ArticleRepositorySupportImpl.findByTitleContaining(key, limit);
-        return articleList;
-    }
+//    @Override
+//    @Transactional
+//    public findAll()
+
+//    @Override
+//    @Transactional
+//    public List<Article> findByArticleSet(Set<Long> set) {
+//        List<Article> articleList = ArticleRepositorySupportImpl.findByArticleSet(set);
+//        return articleList;
+//    }
 }

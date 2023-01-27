@@ -16,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class Article extends Time{
+public class Article extends CommunityBaseTime{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(name="article_id")
@@ -41,13 +41,14 @@ public class Article extends Time{
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt) {
+    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt, LocalDateTime updatedAt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.isNotice = isNotice;
         this.writer = user.getId();
         this.viewCnt = viewCnt;
+        this.setUpdatedAt(updatedAt);
     }
 
 
@@ -55,9 +56,17 @@ public class Article extends Time{
     @OrderBy("id asc")
     private List<Comment> comments;
 
-    public void update(ArticleModifyQuery query) {
-        this.title = query.getTitle();
-        this.content = query.getContent();
+//    public void updateArticle(ArticleModifyQuery query) {
+//        this.title = query.getTitle();
+//        this.content = query.getContent();
+//        this.setUpdatedAt(LocalDateTime.now());
+//    }
+
+    public void updateArticle(String title, String content, Boolean isNotice, LocalDateTime updatedAt) {
+        this.title = title;
+        this.content = content;
+        this.isNotice = isNotice;
+        this.setUpdatedAt(updatedAt);
     }
 
     public void updateViewCnt() {

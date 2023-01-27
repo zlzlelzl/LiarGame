@@ -25,10 +25,14 @@ public class ArticleController {
 //    }
 
     @PostMapping
-    public ResponseEntity<?> writeArticle(HttpServletRequest request, @RequestBody ArticleDetailReq articleDetailReq){
-        articleService.insertArticle(articleDetailReq);
-        return ResponseEntity.ok().build();
+    public Long createArticle(@RequestBody ArticleDetailReq article){
+        return articleService.insertArticle(article);
     }
+//    @PostMapping
+//    public ResponseEntity<?> writeArticle(@RequestBody final ArticleDetailReq articleDetailReq){
+//        articleService.insertArticle(articleDetailReq);
+//        return ResponseEntity.ok().build();
+//    }
 
 //    @GetMapping("/page/{page}")
 //    public ResponseEntity<List<ArticleResp>> findArticles(int page, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
@@ -46,24 +50,24 @@ public class ArticleController {
 //    public ResponseEntity<List<ArticleResp>> getArticleByWord(@PathVariable("word") String word){
 //        return ResponseEntity.ok().body(articleService.selectArticleword(word));
 //    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
-//        articleService.deleteArticle(id);
-//        return ResponseEntity.ok().build();
-//    }
-//
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
+        articleService.deleteArticle(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 //    @PutMapping("/{id}")
 //    public ResponseEntity<?> updateArticle(@PathVariable("id") Long id, @RequestBody ArticleDetailReq article) {
 //        articleService.updateArticle(article);
 //        return ResponseEntity.ok().build();
 //    }
-//    @PatchMapping("/{id}")
-//    public ResponseEntity patchArticle(@PathVariable ("id") Long id, @RequestBody ArticleDetailReq article){
-//        articleService.updateArticle(article);
-//        return ResponseEntity.ok().build();
-//    }
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> patchArticle(@PathVariable ("id") Long id, @RequestBody ArticleDetailReq article){
+        articleService.updateArticle(id, article);
+        return ResponseEntity.ok().build();
+    }
 
 }
 

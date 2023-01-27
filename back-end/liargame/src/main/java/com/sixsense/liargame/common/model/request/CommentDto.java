@@ -21,12 +21,12 @@ public class CommentDto {
     public static CommentDto toCommentDto(Comment comment) {
         CommentDto commentDto = new CommentDto();
         commentDto.setId(comment.getId());
-        commentDto.setUserId(comment.getUserId());
+        //commentDto.setUserId(comment.getUserId());
         //commentDto.setUserName(comment.getUserName();
         commentDto.setComment(comment.getComment());
         commentDto.setCreatedAt(comment.getCreatedAt());
         commentDto.setUpdatedAt(comment.getUpdatedAt());
-        commentDto.setArticleId(comment.getArticleId());
+        //commentDto.setArticleId(comment.getArticleId());
         return commentDto;
     }
 }

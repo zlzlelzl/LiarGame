@@ -21,7 +21,7 @@ public class CommentServiceImpl implements CommentService {
     public void insertComments(CommentReq commentReq) {
         Comment comment = Comment.builder()
                 .comment(commentReq.getContent())
-                .userId(commentReq.getUserId())
+                //.userId(commentReq.getUserId())
                 .build();
         Long id = commentRepository.save(comment).getId();
     }
