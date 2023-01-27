@@ -32,8 +32,12 @@ export default {
   },
   methods:{
     toggle(){
+      // console.log(this.$store.state.isShowList)
+      this.$store.state.isShowList[this.$store.state.myIdx] = !this.$store.state.isShowList[this.$store.state.myIdx]
+      console.log(this.$store.state.myIdx)
+     },
+     joinUser(){
       
-      this.$store.state.isShow = !this.$store.state.isShow
      }
     }
   }
