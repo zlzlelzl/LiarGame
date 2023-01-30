@@ -1,7 +1,9 @@
 package com.sixsense.liargame.api.request;
 
+import com.sixsense.liargame.api.response.CommentResp;
 import com.sixsense.liargame.common.model.response.UserDto;
 import com.sixsense.liargame.db.entity.Article;
+import com.sixsense.liargame.db.entity.Comment;
 import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +19,7 @@ public class ArticleDetailReq {
     private Long writer;
     private Boolean isNotice;
     private Integer viewCnt;
+    private List<Comment> comments;
 
     public Article articleToEntity() {
         return Article.builder()
@@ -25,6 +28,7 @@ public class ArticleDetailReq {
                 .writer(writer)
                 .isNotice(isNotice)
                 .viewCnt(viewCnt)
+                .comments(comments)
                 .build();
     }
 }

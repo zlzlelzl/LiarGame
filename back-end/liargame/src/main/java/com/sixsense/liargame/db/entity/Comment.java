@@ -1,50 +1,47 @@
 package com.sixsense.liargame.db.entity;
 
-import lombok.*;
-import javax.persistence.*;
-import com.sixsense.liargame.common.model.request.CommentDto;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.time.LocalDateTime;
+import javax.persistence.*;
 
 @Entity
 @Getter
-@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@ToString
 public class Comment extends CommunityBaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Long id;
 
-    //@Column(name = "comment")
-    private String commentContent;
-
-//    //@Column(name = "article_id")
+    private String content;
     private Long articleId;
-
-
-    @ManyToOne
-    @JoinColumn(name = "article_id")
-    private Article article;
-
-//    @Column(name = "user_id")
     private Long commentWriter;
+    @Column(name = "user_id")
+    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//    private User user;
-
-    public void updateComment(String commentContent){
-
-        this.commentContent = commentContent;
+    public Comment(String content) {
+        this.content = content;
     }
 
-    public Comment(Long id, String commentContent, User user, Article article){
+    @Builder
+    public Comment(Long id, String content, Long articleId, Long commentWriter, Long userId, User user) {
         this.id = id;
-        this.commentContent = commentContent;
-        this.commentWriter = user.getId();
-        this.articleId = article.getId();
+        this.content = content;
+        this.articleId = articleId;
+        this.commentWriter = commentWriter;
+        this.userId = userId;
+        this.user = user;
+    }
+
+    public void updateComment(String content) {
+
+        this.content = content;
     }
 }

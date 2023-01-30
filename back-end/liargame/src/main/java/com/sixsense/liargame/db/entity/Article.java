@@ -1,27 +1,21 @@
 package com.sixsense.liargame.db.entity;
 
-import com.sixsense.liargame.api.request.ArticleModifyQuery;
-import com.sixsense.liargame.db.repository.ArticleRepository;
-import lombok.*;
-import com.sixsense.liargame.common.model.request.ArticleDto;
-import org.springframework.data.annotation.LastModifiedDate;
-import reactor.util.annotation.Nullable;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.time.LocalDateTime;
 import javax.persistence.*;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Getter
-@Setter
-@Builder
 @ToString
-public class Article extends CommunityBaseTime{
+public class Article extends CommunityBaseTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="article_id")
+    @Column(name = "article_id")
     private Long id;
 
     //@Column(name = "title")
@@ -48,6 +42,26 @@ public class Article extends CommunityBaseTime{
     private List<Comment> comments;
 
 
+    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.isNotice = isNotice;
+        this.writer = user.getId();
+        this.viewCnt = viewCnt;
+    }
+
+    @Builder
+    public Article(Long id, String title, String content, Boolean isNotice, Long writer, Integer viewCnt, List<Comment> comments) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.isNotice = isNotice;
+        this.writer = writer;
+        this.viewCnt = viewCnt;
+        this.comments = comments;
+    }
+
     public void updateArticle(String title, String content, Boolean isNotice) {
         this.title = title;
         this.content = content;
@@ -56,14 +70,5 @@ public class Article extends CommunityBaseTime{
 
     public void updateViewCnt() {
         viewCnt++;
-    }
-
-    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.isNotice = isNotice;
-        this.writer = user.getId();
-        this.viewCnt = viewCnt;
     }
 }

@@ -11,7 +11,7 @@ public interface CommentService {
 
     Long deleteComment(Long id);
 
-    Long updateComment(Long id, CommentReq commentReq);
+    Long updateComment(Long articleId, CommentReq commentReq);
 
-
+    List<CommentResp> findAllComments(Long articleId);
 }

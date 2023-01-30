@@ -8,5 +8,6 @@ import java.util.Set;
 public interface CommentRepositorySupport {
     List<Comment> findByCommentSet(Set<Long> set);
 
-//    List<Comment> findByArticleId(Long articleId, Sort sort);
+    List<Comment> findByArticleId(Long articleId);
+
 }

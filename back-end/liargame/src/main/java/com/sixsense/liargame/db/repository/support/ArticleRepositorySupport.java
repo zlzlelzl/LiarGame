@@ -8,4 +8,5 @@ public interface ArticleRepositorySupport {
     List<Article> findByArticleSet(Set<Long> set);
 
     List<Article> findByTitleContaining(String key);
+
 }

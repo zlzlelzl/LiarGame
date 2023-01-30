@@ -13,11 +13,18 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class CommentResp {
+    private Long id;
     private String commentContent;
-    private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private List<ArticleResp> articles;
+    private Long commentWriter;
+    private Long articleId;
 
+    //EntityToDto
     public CommentResp(Comment comment) {
+        this.id = comment.getId();
+        this.commentContent = comment.getCommentContent();
+        this.updatedAt = comment.getUpdatedAt();
+        this.commentWriter = comment.getCommentWriter();
+        this.articleId = comment.getArticle().getId();
     }
 }

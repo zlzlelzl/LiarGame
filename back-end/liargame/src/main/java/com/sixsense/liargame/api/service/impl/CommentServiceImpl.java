@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.save(commentReq.commentToEntity(articleId));
         //System.out.println(comment.getCommentContent());
         //System.out.println(comment.getArticleId());
-        return comment.getArticleId();
+        return articleId;
 //        Comment comment = Comment.builder()
 //                .comment(commentReq.getContent())
 //                .commentWriter(commentReq.getCommentWriter())
@@ -39,11 +39,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Long updateComment(Long id, CommentReq commentReq) {
+    public Long updateComment(Long commentId, CommentReq commentReq) {
 //        Comment comment = commentRepository.getById(id);
 //        comment.setCommentContent(commentReq.getCommentContent());
 //        commentRepository.save(comment);
-        Comment comment = commentRepository.findById(id).orElseThrow(null);
+        Comment comment = commentRepository.findById(commentId).orElseThrow(null);
 //        if(comment == null){
 //            throw new RuntimeException("COMMENT_NOT_FOUND");
 //        }
@@ -53,13 +53,13 @@ public class CommentServiceImpl implements CommentService {
 //        }
         comment.updateComment(commentReq.getCommentContent());
         commentRepository.save(comment);
-        return id;
+        return commentId;
     }
 
-//    @Override
-//    public List<CommentResp> findAllComments(Long articleId){
-//        Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
-//        List<Comment> comments = commentRepository.findByArticleId(articleId, sort);
-//        return comments.stream().map(CommentResp::new).collect(Collectors.toList());
-//    }
+    @Override
+    public List<CommentResp> findAllComments(Long articleId){
+        Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
+        List<Comment> comments = commentRepository.findByArticleId(articleId);
+        return comments.stream().map(CommentResp::new).collect(Collectors.toList());
+    }
 }

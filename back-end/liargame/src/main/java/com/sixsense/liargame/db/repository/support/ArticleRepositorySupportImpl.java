@@ -40,14 +40,4 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
         return null;
     }
 
-//    @Override
-//    @Transactional
-//    public findAll()
-
-//    @Override
-//    @Transactional
-//    public List<Article> findByArticleSet(Set<Long> set) {
-//        List<Article> articleList = ArticleRepositorySupportImpl.findByArticleSet(set);
-//        return articleList;
-//    }
 }

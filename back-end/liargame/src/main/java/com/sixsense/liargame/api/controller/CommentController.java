@@ -18,25 +18,24 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping
-    public Long insertComment(@PathVariable("articleId") Long articleId, @RequestBody CommentReq commentReq) {
+    public Long insertComment(@PathVariable Long articleId, @RequestBody CommentReq commentReq) {
         return commentService.insertComments(articleId, commentReq);
     }
 
-    @PatchMapping("/{commentid}")
-    public ResponseEntity<?> updateComment(@PathVariable("commentid") Long id,  @RequestBody CommentReq commentReq) {
-        commentService.updateComment(id, commentReq);
+    @PatchMapping("/{commentId}")
+    public ResponseEntity<?> updateComment(@PathVariable Long articleId, @PathVariable Long commentId,  @RequestBody CommentReq commentReq) {
+        commentService.updateComment(articleId, commentReq);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/{commentid}")
-    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long id){
-        commentService.deleteComment(id);
+    @DeleteMapping("/{commentId}")
+    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long commentId){
+        commentService.deleteComment(commentId);
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping
-//    public List<CommentResp> findAllComments() {
-////        commentService.findAllComments(articleId);
-//        return commentService.findAllComments();
-//    }
+    @GetMapping
+    public List<CommentResp> findAllComments(@PathVariable Long articleId){
+        return commentService.findAllComments(articleId);
+    }
 }

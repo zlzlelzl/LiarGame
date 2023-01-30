@@ -29,13 +29,13 @@ public class CommentRepositorySupportImpl implements CommentRepositorySupport {
                 .fetch();
     }
 
-//    @Override
-//    public List<Comment> findByArticleId(Long articleId, Sort sort){
-//        return queryFactory
-//                .select(comment)
-//                .from(comment)
-//                .where(comment.id.in(articleId))
-//                ._orderBy(sort)
-//                ._fetch();
-//    }
+
+    @Override
+    public List<Comment> findByArticleId(Long articleId){
+        return queryFactory
+                .select(comment)
+                .from(comment)
+                .where(comment.article.id.eq(articleId))
+                .fetch();
+    }
 }

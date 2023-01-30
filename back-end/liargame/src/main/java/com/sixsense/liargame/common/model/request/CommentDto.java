@@ -1,5 +1,6 @@
 package com.sixsense.liargame.common.model.request;
 
+import com.sixsense.liargame.db.entity.Article;
 import lombok.*;
 import java.time.LocalDateTime;
 import com.sixsense.liargame.db.entity.Comment;
@@ -10,31 +11,17 @@ import com.sixsense.liargame.db.entity.Comment;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentDto {
-    private Long id;
-    private Long commentWriter;
+    private Long userId;
     //private String userName;
-    private String commentContent;
+    private String content;
     private Long articleId;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-
-//    public static CommentDto toCommentDto(Comment comment) {
-//        CommentDto commentDto = new CommentDto();
-//        commentDto.setId(comment.getId());
-//        commentDto.setCommentWriter(comment.getCommentWriter());
-//        commentDto.setComment(comment.getComment());
-//        commentDto.setCreatedAt(comment.getCreatedAt());
-//        commentDto.setUpdatedAt(comment.getUpdatedAt());
-//        commentDto.setArticleId(comment.getArticleId());
-//        return commentDto;
-//    }
 
     //commentToEntity
     public Comment commentToEntity() {
         return Comment.builder()
                 .commentContent(this.commentContent)
                 .commentWriter(this.commentWriter)
-                .articleId(this.articleId)
+                .article(this.article)
                 .build();
     }
 
