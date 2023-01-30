@@ -25,7 +25,7 @@ public class CommentReq {
         return Comment.builder()
                 .commentContent(commentContent)
                 .commentWriter(commentWriter)
-                .article(article)
+                .articleId(articleId)
                 .build();
     }
 

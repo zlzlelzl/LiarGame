@@ -17,7 +17,7 @@ public class Comment extends CommunityBaseTime {
     @Column(name = "comment_id")
     private Long id;
 
-    private String content;
+    private String commentContent;
     private Long articleId;
     private Long commentWriter;
     @Column(name = "user_id")
@@ -26,22 +26,22 @@ public class Comment extends CommunityBaseTime {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    public Comment(String content) {
-        this.content = content;
+    public Comment(String commentContent) {
+        this.commentContent = commentContent;
     }
 
     @Builder
-    public Comment(Long id, String content, Long articleId, Long commentWriter, Long userId, User user) {
+    public Comment(Long id, String commentContent, Long articleId, Long commentWriter, Long userId, User user) {
         this.id = id;
-        this.content = content;
+        this.commentContent = commentContent;
         this.articleId = articleId;
         this.commentWriter = commentWriter;
         this.userId = userId;
         this.user = user;
     }
 
-    public void updateComment(String content) {
+    public void updateComment(String commentContent) {
 
-        this.content = content;
+        this.commentContent = commentContent;
     }
 }

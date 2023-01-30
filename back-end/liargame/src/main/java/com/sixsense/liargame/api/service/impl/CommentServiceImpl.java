@@ -24,7 +24,7 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = commentRepository.save(commentReq.commentToEntity(articleId));
         //System.out.println(comment.getCommentContent());
         //System.out.println(comment.getArticleId());
-        return articleId;
+        return comment.getId();
 //        Comment comment = Comment.builder()
 //                .comment(commentReq.getContent())
 //                .commentWriter(commentReq.getCommentWriter())

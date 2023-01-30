@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class CommentResp {
     private Long id;
     private String commentContent;
-    private Article article;
+    private Long articleId;
     private Long commentWriter;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -18,7 +18,7 @@ public class CommentResp {
     public CommentResp(Comment comment) {
         this.id = comment.getId();
         this.commentContent = comment.getCommentContent();
-        this.article = comment.getArticle();
+        this.articleId = comment.getArticleId();
         this.commentWriter = comment.getCommentWriter();
         this.createdAt = comment.getCreatedAt();
         this.updatedAt = comment.getUpdatedAt();

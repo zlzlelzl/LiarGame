@@ -35,7 +35,7 @@ public class CommentRepositorySupportImpl implements CommentRepositorySupport {
         return queryFactory
                 .select(comment)
                 .from(comment)
-                .where(comment.article.id.eq(articleId))
+                .where(comment.id.in(articleId))
                 .fetch();
     }
 }

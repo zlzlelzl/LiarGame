@@ -25,6 +25,6 @@ public class CommentResp {
         this.commentContent = comment.getCommentContent();
         this.updatedAt = comment.getUpdatedAt();
         this.commentWriter = comment.getCommentWriter();
-        this.articleId = comment.getArticle().getId();
+        this.articleId = comment.getArticleId();
     }
 }

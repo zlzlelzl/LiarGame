@@ -13,15 +13,15 @@ import com.sixsense.liargame.db.entity.Comment;
 public class CommentDto {
     private Long userId;
     //private String userName;
-    private String content;
+    private String commentContent;
     private Long articleId;
 
     //commentToEntity
     public Comment commentToEntity() {
         return Comment.builder()
                 .commentContent(this.commentContent)
-                .commentWriter(this.commentWriter)
-                .article(this.article)
+                .commentWriter(this.userId)
+                .articleId(this.articleId)
                 .build();
     }
 

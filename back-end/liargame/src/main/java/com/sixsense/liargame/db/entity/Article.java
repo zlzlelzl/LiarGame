@@ -37,18 +37,19 @@ public class Article extends CommunityBaseTime {
 //    @JoinColumn(name = "user_id")
 //    private User user;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "article")
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @OrderBy("updatedAt DESC")
     private List<Comment> comments;
 
 
-    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt) {
+    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.isNotice = isNotice;
         this.writer = user.getId();
         this.viewCnt = viewCnt;
+        this.comments = comments;
     }
 
     @Builder
