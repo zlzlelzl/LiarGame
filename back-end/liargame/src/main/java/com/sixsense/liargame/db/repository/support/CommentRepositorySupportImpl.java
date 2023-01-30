@@ -4,11 +4,12 @@ import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sixsense.liargame.db.entity.Comment;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Set;
 
-import static com.sixsense.liargame.db.entity.QComment.comment1;
+import static com.sixsense.liargame.db.entity.QComment.comment;
 
 @Repository
 public class CommentRepositorySupportImpl implements CommentRepositorySupport {
@@ -21,10 +22,20 @@ public class CommentRepositorySupportImpl implements CommentRepositorySupport {
     @Override
     public List<Comment> findByCommentSet(Set<Long> set) {
         return queryFactory
-                .select(comment1)
-                .from(comment1)
-                .where(comment1.id.in(set))
-                .orderBy(new OrderSpecifier<>(Order.DESC, comment1.id))
+                .select(comment)
+                .from(comment)
+                .where(comment.id.in(set))
+                .orderBy(new OrderSpecifier<>(Order.DESC, comment.id))
                 .fetch();
     }
+
+//    @Override
+//    public List<Comment> findByArticleId(Long articleId, Sort sort){
+//        return queryFactory
+//                .select(comment)
+//                .from(comment)
+//                .where(comment.id.in(articleId))
+//                ._orderBy(sort)
+//                ._fetch();
+//    }
 }

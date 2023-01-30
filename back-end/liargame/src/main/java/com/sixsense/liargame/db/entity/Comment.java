@@ -19,15 +19,15 @@ public class Comment extends CommunityBaseTime {
     private Long id;
 
     //@Column(name = "comment")
-    private String comment;
+    private String commentContent;
 
 //    //@Column(name = "article_id")
     private Long articleId;
 
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "article_id")
-//    private Article article;
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Article article;
 
 //    @Column(name = "user_id")
     private Long commentWriter;
@@ -36,14 +36,14 @@ public class Comment extends CommunityBaseTime {
 //    @JoinColumn(name = "user_id")
 //    private User user;
 
-    public void updateComment(String comment, LocalDateTime updatedAt){
-        this.comment = comment;
-        this.setUpdatedAt(updatedAt);
+    public void updateComment(String commentContent){
+
+        this.commentContent = commentContent;
     }
 
-    public Comment(Long id, String comment, User user, Article article){
+    public Comment(Long id, String commentContent, User user, Article article){
         this.id = id;
-        this.comment = comment;
+        this.commentContent = commentContent;
         this.commentWriter = user.getId();
         this.articleId = article.getId();
     }

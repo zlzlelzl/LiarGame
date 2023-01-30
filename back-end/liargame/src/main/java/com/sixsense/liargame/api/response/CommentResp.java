@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class CommentResp {
-    private String comment;
+    private String commentContent;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private List<ArticleResp> articles;

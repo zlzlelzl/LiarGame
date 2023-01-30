@@ -1,6 +1,7 @@
 package com.sixsense.liargame.db.entity;
 
 import com.sixsense.liargame.api.request.ArticleModifyQuery;
+import com.sixsense.liargame.db.repository.ArticleRepository;
 import lombok.*;
 import com.sixsense.liargame.common.model.request.ArticleDto;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -43,7 +44,7 @@ public class Article extends CommunityBaseTime{
 //    private User user;
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "article")
-    @OrderBy("id asc")
+    @OrderBy("updatedAt DESC")
     private List<Comment> comments;
 
 

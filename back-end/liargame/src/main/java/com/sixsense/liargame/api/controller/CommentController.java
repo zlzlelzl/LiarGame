@@ -13,36 +13,30 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/comment")
+@RequestMapping("/articles/{articleId}/comment")
 public class CommentController {
     private final CommentService commentService;
 
-//    @GetMapping("/{articleId}")
-//    public ResponseEntity<List<CommentResp>> getComments(@PathVariable Long articleId) {
-//        return ResponseEntity.ok().body(commentService.selectArticle(articleId));
-//    }
-
     @PostMapping
-    public ResponseEntity<CommentResp> insertComment(@RequestBody CommentReq commentReq) {
-        commentService.insertComments(commentReq);
+    public Long insertComment(@PathVariable("articleId") Long articleId, @RequestBody CommentReq commentReq) {
+        return commentService.insertComments(articleId, commentReq);
+    }
+
+    @PatchMapping("/{commentid}")
+    public ResponseEntity<?> updateComment(@PathVariable("commentid") Long id,  @RequestBody CommentReq commentReq) {
+        commentService.updateComment(id, commentReq);
         return ResponseEntity.ok().build();
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<CommentResp> updateComment(@PathVariable Long id,  @RequestBody CommentReq commentReq) {
-//        commentService.updateComment(id, commentReq);
-//        return ResponseEntity.ok().build();
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long id){
-//        commentService.deleteComment(id);
-//        return ResponseEntity.ok().build();
-//    }
-//
+    @DeleteMapping("/{commentid}")
+    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long id){
+        commentService.deleteComment(id);
+        return ResponseEntity.ok().build();
+    }
+
 //    @GetMapping
-//    public List<CommentResp> getComments(@RequestBody CommentReq commentReq){
-////        commentService.findAllComment();
-//        return commentService.findAllComment();
+//    public List<CommentResp> findAllComments() {
+////        commentService.findAllComments(articleId);
+//        return commentService.findAllComments();
 //    }
 }

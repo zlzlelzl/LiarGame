@@ -1,5 +1,6 @@
 package com.sixsense.liargame.api.request;
 
+import com.sixsense.liargame.db.entity.Comment;
 import lombok.*;
 
 import java.text.DateFormat;
@@ -10,8 +11,18 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 public class CommentReq {
-    private String content;
-    private Long userId;
+    private String commentContent;
+    private Long commentWriter;
+    private Long articleId;
     private String createdAt;
     private String updatedAt;
+
+    public Comment commentToEntity(Long articleId){
+        return Comment.builder()
+                .commentContent(commentContent)
+                .commentWriter(commentWriter)
+                .articleId(articleId)
+                .build();
+    }
+
 }

@@ -13,7 +13,7 @@ public class CommentDto {
     private Long id;
     private Long commentWriter;
     //private String userName;
-    private String comment;
+    private String commentContent;
     private Long articleId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -29,11 +29,12 @@ public class CommentDto {
 //        return commentDto;
 //    }
 
-    //toCommentEntity
-    public Comment toCommentEntity() {
+    //commentToEntity
+    public Comment commentToEntity() {
         return Comment.builder()
-                .comment(this.comment)
+                .commentContent(this.commentContent)
                 .commentWriter(this.commentWriter)
+                .articleId(this.articleId)
                 .build();
     }
 

@@ -20,30 +20,46 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void insertComments(CommentReq commentReq) {
-        Comment comment = Comment.builder()
-                .comment(commentReq.getContent())
-                .commentWriter()
-                .build();
-        Long id = commentRepository.save(comment).getId();
+    public Long insertComments(Long articleId, CommentReq commentReq) {
+        Comment comment = commentRepository.save(commentReq.commentToEntity(articleId));
+        //System.out.println(comment.getCommentContent());
+        //System.out.println(comment.getArticleId());
+        return comment.getArticleId();
+//        Comment comment = Comment.builder()
+//                .comment(commentReq.getContent())
+//                .commentWriter(commentReq.getCommentWriter())
+//                .build();
+//        Long id = commentRepository.save(comment).getId();
+    }
+
+    @Override
+    public Long deleteComment(Long id) {
+        commentRepository.deleteById(id);
+        return id;
+    }
+
+    @Override
+    public Long updateComment(Long id, CommentReq commentReq) {
+//        Comment comment = commentRepository.getById(id);
+//        comment.setCommentContent(commentReq.getCommentContent());
+//        commentRepository.save(comment);
+        Comment comment = commentRepository.findById(id).orElseThrow(null);
+//        if(comment == null){
+//            throw new RuntimeException("COMMENT_NOT_FOUND");
+//        }
+        //error 설정    (500 error)
+//        if(commentReq.getCommentWriter() != commentRepository.findById(id).get().getCommentWriter()){
+//            throw new RuntimeException("NOT_COMMENT_WRITER");
+//        }
+        comment.updateComment(commentReq.getCommentContent());
+        commentRepository.save(comment);
+        return id;
     }
 
 //    @Override
-//    public void deleteComment(Long id) {
-//        commentRepository.deleteById(id);
-//    }
-//
-//    @Override
-//    public void updateComment(Long id, CommentReq commentReq) {
-//        Comment comment = commentRepository.getOne(id);
-//        comment.setComment(commentReq.getContent());
-//        commentRepository.save(comment);
-//    }
-//
-//    @Override
-//    public List<CommentResp> findAllComment(){
+//    public List<CommentResp> findAllComments(Long articleId){
 //        Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
-//        List<Comment> comments = commentRepository.findAll(sort);
+//        List<Comment> comments = commentRepository.findByArticleId(articleId, sort);
 //        return comments.stream().map(CommentResp::new).collect(Collectors.toList());
 //    }
 }
