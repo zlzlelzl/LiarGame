@@ -1,6 +1,7 @@
 package com.sixsense.liargame.api.response;
 
 //import com.sixsense.liargame.common.model.response.ArticleResp;
+import com.sixsense.liargame.db.entity.Comment;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -16,4 +17,7 @@ public class CommentResp {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private List<ArticleResp> articles;
+
+    public CommentResp(Comment comment) {
+    }
 }

@@ -11,22 +11,30 @@ import com.sixsense.liargame.db.entity.Comment;
 @AllArgsConstructor
 public class CommentDto {
     private Long id;
-    private Long userId;
+    private Long commentWriter;
     //private String userName;
     private String comment;
     private Long articleId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public static CommentDto toCommentDto(Comment comment) {
-        CommentDto commentDto = new CommentDto();
-        commentDto.setId(comment.getId());
-        //commentDto.setUserId(comment.getUserId());
-        //commentDto.setUserName(comment.getUserName();
-        commentDto.setComment(comment.getComment());
-        commentDto.setCreatedAt(comment.getCreatedAt());
-        commentDto.setUpdatedAt(comment.getUpdatedAt());
-        //commentDto.setArticleId(comment.getArticleId());
-        return commentDto;
+//    public static CommentDto toCommentDto(Comment comment) {
+//        CommentDto commentDto = new CommentDto();
+//        commentDto.setId(comment.getId());
+//        commentDto.setCommentWriter(comment.getCommentWriter());
+//        commentDto.setComment(comment.getComment());
+//        commentDto.setCreatedAt(comment.getCreatedAt());
+//        commentDto.setUpdatedAt(comment.getUpdatedAt());
+//        commentDto.setArticleId(comment.getArticleId());
+//        return commentDto;
+//    }
+
+    //toCommentEntity
+    public Comment toCommentEntity() {
+        return Comment.builder()
+                .comment(this.comment)
+                .commentWriter(this.commentWriter)
+                .build();
     }
+
 }

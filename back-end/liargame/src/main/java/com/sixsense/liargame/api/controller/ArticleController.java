@@ -27,6 +27,7 @@ public class ArticleController {
 
     @PostMapping
     public Long createArticle(@RequestBody ArticleDetailReq article){
+
         return articleService.insertArticle(article);
     }
 //    @PostMapping
@@ -41,21 +42,32 @@ public class ArticleController {
 //
 //        return ResponseEntity.ok().body(articleService.findArticles(page));
 //    }
-//
-//    @GetMapping("/key/{key}")
-//    public ResponseEntity<List<ArticleResp>> getArticleByKey(@PathVariable("key") String key){
-//        return ResponseEntity.ok().body(articleService.selectArticlekey(key));
-//    }
-//
-//    @GetMapping("/word/{word}")
-//    public ResponseEntity<List<ArticleResp>> getArticleByWord(@PathVariable("word") String word){
-//        return ResponseEntity.ok().body(articleService.selectArticleword(word));
+
+    @GetMapping("/{page}")
+    public List<ArticleResp> getArticlesByPage(@PathVariable("page") int page, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+        return articleService.findAll();
+    }
+
+    @GetMapping("/{key}")
+    public ResponseEntity<List<ArticleResp>> getArticleByKey(@PathVariable("key") String key){
+        return ResponseEntity.ok().body(articleService.selectArticlekey(key));
+    }
+
+    @GetMapping("/{word}")
+    public ResponseEntity<List<ArticleResp>> getArticleByWord(@PathVariable("word") String word){
+        return ResponseEntity.ok().body(articleService.selectArticleword(word));
+    }
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
+//        articleService.deleteArticle(id);
+//        return ResponseEntity.ok().build();
 //    }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteArticle(@PathVariable("id") Long id){
+    public Long deleteArticle(@PathVariable("id") Long id){
         articleService.deleteArticle(id);
-        return ResponseEntity.ok().build();
+        return id;
     }
 
 
@@ -65,7 +77,7 @@ public class ArticleController {
 //        return ResponseEntity.ok().build();
 //    }
     @PatchMapping("/{id}")
-    public ResponseEntity<?> patchArticle(@PathVariable ("id") Long id, @RequestBody ArticleModifyQuery article){
+    public ResponseEntity<?> patchArticle(@PathVariable ("id") Long id, @RequestBody ArticleDetailReq article){
         articleService.updateArticle(id, article);
         return ResponseEntity.ok().build();
     }

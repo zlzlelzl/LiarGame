@@ -16,7 +16,7 @@ public interface ArticleService {
 
     void deleteArticle(Long id);
 
-    Long updateArticle(Long id, ArticleModifyQuery article);
+    Long updateArticle(Long id, ArticleDetailReq article);
 
     ArticleResp getArticle(Long id);
 

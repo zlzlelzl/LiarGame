@@ -27,8 +27,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     @Transactional
     public Long insertArticle(final ArticleDetailReq articleDetail) {
-        System.out.println(articleDetail.articleToEntity());
         Article article = articleRepository.save(articleDetail.articleToEntity());
+//        System.out.println(article);
         return article.getId();
 //        Article article = Article.builder()
 //                .title(articleDetail.getTitle())
@@ -57,8 +57,11 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional
-    public Long updateArticle(Long id, ArticleModifyQuery article) {
-        Article article1 = articleRepository.findById(id).get();
+    public Long updateArticle(Long id, ArticleDetailReq article) {
+        Article article1 = articleRepository.findById(id).orElseThrow(null);
+//        if(article1 == null){
+//            throw new RuntimeException("ARTICLES_NOT_FOUND");
+//        }
         article1.updateArticle(article.getTitle(), article.getContent(), article.getIsNotice());
         return id;
     }
@@ -78,6 +81,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleResp> findArticles(int page) {
+
         return null;
     }
 

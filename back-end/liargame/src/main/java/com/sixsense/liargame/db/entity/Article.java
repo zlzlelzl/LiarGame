@@ -42,25 +42,10 @@ public class Article extends CommunityBaseTime{
 //    @JoinColumn(name = "user_id")
 //    private User user;
 
-    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.isNotice = isNotice;
-        this.writer = user.getId();
-        this.viewCnt = viewCnt;
-    }
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "article")
+    @OrderBy("id asc")
+    private List<Comment> comments;
 
-
-//    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER, mappedBy = "article")
-//    @OrderBy("id asc")
-//    private List<Comment> comments;
-
-//    public void updateArticle(ArticleModifyQuery query) {
-//        this.title = query.getTitle();
-//        this.content = query.getContent();
-//        this.setUpdatedAt(LocalDateTime.now());
-//    }
 
     public void updateArticle(String title, String content, Boolean isNotice) {
         this.title = title;
@@ -70,5 +55,14 @@ public class Article extends CommunityBaseTime{
 
     public void updateViewCnt() {
         viewCnt++;
+    }
+
+    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.isNotice = isNotice;
+        this.writer = user.getId();
+        this.viewCnt = viewCnt;
     }
 }

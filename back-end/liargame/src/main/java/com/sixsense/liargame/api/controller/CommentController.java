@@ -17,26 +17,32 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-    @GetMapping("/{articleId}")
-    public ResponseEntity<List<CommentResp>> getComments(@PathVariable Long articleId) {
-        return ResponseEntity.ok().body(commentService.selectArticle(articleId));
-    }
+//    @GetMapping("/{articleId}")
+//    public ResponseEntity<List<CommentResp>> getComments(@PathVariable Long articleId) {
+//        return ResponseEntity.ok().body(commentService.selectArticle(articleId));
+//    }
 
     @PostMapping
-    public ResponseEntity<CommentResp> insertComment(@RequestBody CommentReq commentReq, HttpServletRequest request) {
+    public ResponseEntity<CommentResp> insertComment(@RequestBody CommentReq commentReq) {
         commentService.insertComments(commentReq);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<CommentResp> updateComment(@PathVariable Long id,  @RequestBody CommentReq commentReq) {
-        commentService.updateComment(id, commentReq);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long id){
-        commentService.deleteComment(id);
-        return ResponseEntity.ok().build();
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<CommentResp> updateComment(@PathVariable Long id,  @RequestBody CommentReq commentReq) {
+//        commentService.updateComment(id, commentReq);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long id){
+//        commentService.deleteComment(id);
+//        return ResponseEntity.ok().build();
+//    }
+//
+//    @GetMapping
+//    public List<CommentResp> getComments(@RequestBody CommentReq commentReq){
+////        commentService.findAllComment();
+//        return commentService.findAllComment();
+//    }
 }

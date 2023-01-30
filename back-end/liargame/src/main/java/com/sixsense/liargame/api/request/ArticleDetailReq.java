@@ -16,6 +16,7 @@ public class ArticleDetailReq {
     private String content;
     private Long writer;
     private Boolean isNotice;
+    private Integer viewCnt;
 
     public Article articleToEntity() {
         return Article.builder()
@@ -23,6 +24,7 @@ public class ArticleDetailReq {
                 .content(content)
                 .writer(writer)
                 .isNotice(isNotice)
+                .viewCnt(viewCnt)
                 .build();
     }
 }
