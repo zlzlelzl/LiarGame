@@ -1,5 +1,6 @@
 package com.sixsense.liargame.api.request;
 
+import com.sixsense.liargame.common.model.response.UserDto;
 import com.sixsense.liargame.db.entity.Article;
 import com.sixsense.liargame.db.entity.Comment;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,7 @@ public class ArticleDetailReq {
                 .isNotice(isNotice)
                 .viewCnt(viewCnt)
                 .comments(comments)
+                .viewCnt(viewCnt)
                 .build();
     }
 }
