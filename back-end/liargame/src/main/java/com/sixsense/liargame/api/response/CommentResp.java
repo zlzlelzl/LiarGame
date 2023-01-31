@@ -1,11 +1,11 @@
 package com.sixsense.liargame.api.response;
 
 //import com.sixsense.liargame.common.model.response.ArticleResp;
+
 import com.sixsense.liargame.db.entity.Comment;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +16,7 @@ public class CommentResp {
     private Long id;
     private String commentContent;
     private LocalDateTime updatedAt;
-    private Long commentWriter;
+    private Long userId;
     private Long articleId;
 
     //EntityToDto
@@ -24,7 +24,7 @@ public class CommentResp {
         this.id = comment.getId();
         this.commentContent = comment.getCommentContent();
         this.updatedAt = comment.getUpdatedAt();
-        this.commentWriter = comment.getCommentWriter();
+        this.userId = comment.getUserId();
         this.articleId = comment.getArticleId();
     }
 }

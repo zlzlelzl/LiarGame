@@ -3,6 +3,7 @@ package com.sixsense.liargame.api.service.impl;
 import com.sixsense.liargame.api.request.ArticleDetailReq;
 import com.sixsense.liargame.api.response.ArticleResp;
 import com.sixsense.liargame.api.service.ArticleService;
+import com.sixsense.liargame.api.service.CommentService;
 import com.sixsense.liargame.db.entity.Article;
 import com.sixsense.liargame.db.repository.ArticleRepository;
 import lombok.Getter;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class ArticleServiceImpl implements ArticleService {
     private ArticleRepository articleRepository;
+    private CommentService commentService;
 
     public ArticleServiceImpl(ArticleRepository articleRepository) {
         this.articleRepository = articleRepository;
@@ -31,7 +33,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<ArticleResp> getArticles(){
+    public List<ArticleResp> getArticles() {
         Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
         List<Article> articles = articleRepository.findAll(sort);
         return articles.stream().map(ArticleResp::new).collect(Collectors.toList());
@@ -48,19 +50,23 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     public Long updateArticle(Long id, ArticleDetailReq article) {
         Article article1 = articleRepository.findById(id).orElseThrow(null);
-//        if(article1 == null){
-//            throw new RuntimeException("ARTICLES_NOT_FOUND");
-//        }
         article1.updateArticle(article.getTitle(), article.getContent(), article.getIsNotice());
+        articleRepository.save(article1);
         return id;
     }
 
     @Override
-    public Optional<Article> getArticle(Long id) {
+    public Article getArticle(Long id) {
         Article article = articleRepository.findById(id).orElseThrow(null);
-        article.updateViewCnt();
-        this.articleRepository.save(article);
-        return this.articleRepository.findById(id);
+        System.out.println(article);
+//        List<Comment> comments = null;
+//        if (article.getComments() != null) {
+//            comments = commentService.findAllByArticleId(id);
+//            System.out.println(comments);
+//        }
+//        List<Comment> comments = commentService.findAllByArticleId(id);
+//        article.updateViewCnt(article.getViewCnt());
+        return article;
     }
 
 }

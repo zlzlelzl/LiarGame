@@ -4,6 +4,8 @@ import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.sixsense.liargame.db.entity.Article;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,4 +42,11 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
         return null;
     }
 
+    @Override
+    @Modifying
+    @Query("update Article a set a.viewCnt = a.viewCnt + 1 where a.id = :articleId")
+    public Integer updateViewCnt(Long articleId) {
+//        System.out.println(articleId);
+        return null;
+    }
 }

@@ -1,30 +1,26 @@
 package com.sixsense.liargame.api.request;
 
 import com.sixsense.liargame.db.entity.Comment;
-import com.sixsense.liargame.db.entity.Article;
-import lombok.*;
-import com.sixsense.liargame.db.repository.ArticleRepository;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class CommentReq {
     private String commentContent;
-    private Long commentWriter;
+    private Long userId;
     private Long articleId;
     private String createdAt;
     private String updatedAt;
 
     //DtoToEntity
-    public Comment commentToEntity(Long articleId){
+    public Comment commentToEntity(Long articleId) {
 
         return Comment.builder()
                 .commentContent(commentContent)
-                .commentWriter(commentWriter)
+                .userId(userId)
                 .articleId(articleId)
                 .build();
     }

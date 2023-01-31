@@ -1,6 +1,5 @@
 package com.sixsense.liargame.api.response;
 
-import com.sixsense.liargame.common.model.response.UserDto;
 import com.sixsense.liargame.db.entity.Article;
 import lombok.*;
 
@@ -19,7 +18,8 @@ public class ArticleResp {
     private String title;
     private String content;
     private Boolean isNotice;
-    private Long writer;
+    private Long userId;
+    private String userName;
     private Integer viewCnt;
     private List<CommentResp> comments;
     private LocalDateTime createdAt;
@@ -31,7 +31,8 @@ public class ArticleResp {
         this.title = article.getTitle();
         this.content = article.getContent();
         this.isNotice = article.getIsNotice();
-        this.writer = article.getWriter();
+        this.userId = article.getUserId();
+        this.userName = article.getUserName();
         this.comments = article.getComments().stream().map(CommentResp::new).collect(Collectors.toList());
         this.viewCnt = article.getViewCnt();
         this.updatedAt = article.getUpdatedAt();

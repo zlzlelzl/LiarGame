@@ -19,26 +19,32 @@ public class Comment extends CommunityBaseTime {
 
     private String commentContent;
     private Long articleId;
-    private Long commentWriter;
-    @Column(name = "user_id")
+    //    @Column(name = "user_id")
     private Long userId;
-    @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
-
-    public Comment(String commentContent) {
-        this.commentContent = commentContent;
-    }
+//    @ManyToOne
+//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+//    private User user;
 
     @Builder
-    public Comment(Long id, String commentContent, Long articleId, Long commentWriter, Long userId, User user) {
+    public Comment(Long id, String commentContent, Long articleId, Long userId) {
         this.id = id;
         this.commentContent = commentContent;
         this.articleId = articleId;
-        this.commentWriter = commentWriter;
         this.userId = userId;
-        this.user = user;
     }
+
+//    public Comment(String commentContent) {
+//        this.commentContent = commentContent;
+//    }
+
+//    @Builder
+//    public Comment(Long id, String commentContent, Long articleId, Long userId, User user) {
+//        this.id = id;
+//        this.commentContent = commentContent;
+//        this.articleId = articleId;
+//        this.userId = userId;
+//        this.user = user;
+//    }
 
     public void updateComment(String commentContent) {
 

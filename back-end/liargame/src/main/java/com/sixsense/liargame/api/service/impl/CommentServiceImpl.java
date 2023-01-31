@@ -1,14 +1,15 @@
 package com.sixsense.liargame.api.service.impl;
 
+import com.sixsense.liargame.api.request.CommentReq;
 import com.sixsense.liargame.api.response.CommentResp;
 import com.sixsense.liargame.api.service.CommentService;
-import com.sixsense.liargame.db.entity.*;
-import com.sixsense.liargame.db.repository.*;
-import com.sixsense.liargame.api.request.CommentReq;
+import com.sixsense.liargame.db.entity.Comment;
+import com.sixsense.liargame.db.repository.CommentRepository;
+import com.sixsense.liargame.db.repository.UserRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,27 +40,24 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Long updateComment(Long commentId, CommentReq commentReq) {
-//        Comment comment = commentRepository.getById(id);
-//        comment.setCommentContent(commentReq.getCommentContent());
-//        commentRepository.save(comment);
-        Comment comment = commentRepository.findById(commentId).orElseThrow(null);
-//        if(comment == null){
-//            throw new RuntimeException("COMMENT_NOT_FOUND");
-//        }
-        //error 설정    (500 error)
-//        if(commentReq.getCommentWriter() != commentRepository.findById(id).get().getCommentWriter()){
-//            throw new RuntimeException("NOT_COMMENT_WRITER");
-//        }
+    public Long updateComment(Long articleId, Long commentId, CommentReq commentReq) {
+        Comment comment = commentRepository.findByArticleIdAndCommentId(articleId, commentId);
         comment.updateComment(commentReq.getCommentContent());
         commentRepository.save(comment);
         return commentId;
     }
 
     @Override
-    public List<CommentResp> findAllComments(Long articleId){
-        Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
+    public List<CommentResp> findAllComments(Long articleId) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "updatedAt");
         List<Comment> comments = commentRepository.findByArticleId(articleId);
+        System.out.println(comments);
         return comments.stream().map(CommentResp::new).collect(Collectors.toList());
+    }
+
+    public List<Comment> findAllByArticleId(Long articleId) {
+        List<Comment> comments = commentRepository.findByArticleId(articleId);
+        System.out.println(comments);
+        return comments;
     }
 }

@@ -3,12 +3,10 @@ package com.sixsense.liargame.api.controller;
 import com.sixsense.liargame.api.request.CommentReq;
 import com.sixsense.liargame.api.response.CommentResp;
 import com.sixsense.liargame.api.service.CommentService;
-import com.sixsense.liargame.common.model.request.CommentDto;
-import lombok.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -23,19 +21,19 @@ public class CommentController {
     }
 
     @PatchMapping("/{commentId}")
-    public ResponseEntity<?> updateComment(@PathVariable Long articleId, @PathVariable Long commentId,  @RequestBody CommentReq commentReq) {
-        commentService.updateComment(articleId, commentReq);
+    public ResponseEntity<?> updateComment(@PathVariable Long articleId, @PathVariable Long commentId, @RequestBody CommentReq commentReq) {
+        commentService.updateComment(articleId, commentId, commentReq);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{commentId}")
-    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long commentId){
+    public ResponseEntity<CommentResp> deleteComment(@PathVariable Long commentId) {
         commentService.deleteComment(commentId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public List<CommentResp> findAllComments(@PathVariable Long articleId){
+    public List<CommentResp> findAllComments(@PathVariable Long articleId) {
         return commentService.findAllComments(articleId);
     }
 }

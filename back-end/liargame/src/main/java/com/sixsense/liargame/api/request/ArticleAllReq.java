@@ -1,7 +1,10 @@
 package com.sixsense.liargame.api.request;
 
 import com.sixsense.liargame.db.entity.Article;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +15,7 @@ import java.time.LocalDateTime;
 public class ArticleAllReq {
     private Long id;
     private String title;
-    private Long writer;
+    private Long userId;
     private LocalDateTime updatedAt;
     private Integer viewCnt;
     private Boolean isNotice;
@@ -20,7 +23,7 @@ public class ArticleAllReq {
     public Article articleToEntity() {
         return Article.builder()
                 .title(title)
-                .writer(writer)
+                .userId(userId)
                 .viewCnt(viewCnt)
                 .isNotice(isNotice)
                 .build();

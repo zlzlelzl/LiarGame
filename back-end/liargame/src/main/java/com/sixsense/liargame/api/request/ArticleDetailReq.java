@@ -1,11 +1,12 @@
 package com.sixsense.liargame.api.request;
 
-import com.sixsense.liargame.api.response.CommentResp;
-import com.sixsense.liargame.common.model.response.UserDto;
 import com.sixsense.liargame.db.entity.Article;
 import com.sixsense.liargame.db.entity.Comment;
-import lombok.*;
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.util.List;
 
 @Getter
@@ -16,7 +17,7 @@ public class ArticleDetailReq {
     //private Long id;
     private String title;
     private String content;
-    private Long writer;
+    private Long userId;
     private Boolean isNotice;
     private Integer viewCnt;
     private List<Comment> comments;
@@ -25,7 +26,7 @@ public class ArticleDetailReq {
         return Article.builder()
                 .title(title)
                 .content(content)
-                .writer(writer)
+                .userId(userId)
                 .isNotice(isNotice)
                 .viewCnt(viewCnt)
                 .comments(comments)

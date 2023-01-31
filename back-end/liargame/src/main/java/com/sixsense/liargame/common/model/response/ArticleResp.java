@@ -1,7 +1,8 @@
 package com.sixsense.liargame.common.model.response;
 
-import lombok.Getter;
 import com.sixsense.liargame.db.entity.Article;
+import lombok.Getter;
+
 import java.time.LocalDateTime;
 
 @Getter
@@ -10,7 +11,7 @@ public class ArticleResp {
     private String title;
     private String content;
     private Boolean isNotice;
-    private Long writer;
+    private Long userId;
     private Integer viewCnt;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -20,7 +21,7 @@ public class ArticleResp {
         this.title = article.getTitle();
         this.content = article.getContent();
         this.isNotice = article.getIsNotice();
-        this.writer = article.getWriter();
+        this.userId = article.getUserId();
         this.viewCnt = article.getViewCnt();
         this.createdAt = article.getCreatedAt();
         this.updatedAt = article.getUpdatedAt();

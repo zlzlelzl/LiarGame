@@ -1,22 +1,23 @@
 package com.sixsense.liargame.common.model.request;
 
-import lombok.*;
 import com.sixsense.liargame.db.entity.Article;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
 public class ArticleDto {
     private String title;
     private String content;
-    private Long writer;
+    private Long userId;
 
 
     //toEntity
-    public Article articleToEntity(){
+    public Article articleToEntity() {
         return Article.builder()
                 .title(title)
                 .content(content)
-                .writer(writer)
+                .userId(userId)
                 .viewCnt(1)
                 .build();
     }

@@ -1,19 +1,14 @@
 package com.sixsense.liargame.api.controller;
 
-import com.sixsense.liargame.api.request.ArticleAllReq;
 import com.sixsense.liargame.api.request.ArticleDetailReq;
-import com.sixsense.liargame.api.request.ArticleModifyQuery;
 import com.sixsense.liargame.api.response.ArticleResp;
 import com.sixsense.liargame.api.service.ArticleService;
-import com.sixsense.liargame.db.repository.ArticleRepository;
 import com.sixsense.liargame.db.entity.Article;
-import lombok.*;
-import org.springframework.data.domain.*;
-import org.springframework.data.web.PageableDefault;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,30 +18,31 @@ public class ArticleController {
 
     // get list as restful
     @GetMapping
-    public ResponseEntity<List<ArticleResp>> getArticles(){
+    public ResponseEntity<List<ArticleResp>> getArticles() {
         return ResponseEntity.ok().body(articleService.getArticles());
     }
 
     @PostMapping
-    public Long createArticle(@RequestBody ArticleDetailReq article){
-
+    public Long createArticle(@RequestBody ArticleDetailReq article) {
         return articleService.insertArticle(article);
     }
 
     @GetMapping("/{articleId}")
-    public ResponseEntity<?> getArticle(@PathVariable("articleId") Long articleId, @PageableDefault(size = 10) Pageable pageable){
-        return ResponseEntity.ok().body(articleService.getArticle(articleId));
+    public ResponseEntity<?> getArticle(@PathVariable Long articleId) {
+        Article article = articleService.getArticle(articleId);
+//        System.out.println(article.getViewCnt());
+        return ResponseEntity.ok().body(article);
     }
 
     @DeleteMapping("/{articleId}")
-    public Long deleteArticle(@PathVariable("articleId") Long id){
-        articleService.deleteArticle(id);
-        return id;
+    public ResponseEntity<?> deleteArticle(@PathVariable Long articleId) {
+        articleService.deleteArticle(articleId);
+        return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/{articleId}")
-    public ResponseEntity<?> patchArticle(@PathVariable ("articleId") Long id, @RequestBody ArticleDetailReq article){
-        articleService.updateArticle(id, article);
+    public ResponseEntity<?> patchArticle(@PathVariable Long articleId, @RequestBody ArticleDetailReq article) {
+        articleService.updateArticle(articleId, article);
         return ResponseEntity.ok().build();
     }
 

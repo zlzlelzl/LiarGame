@@ -17,20 +17,12 @@ public class Article extends CommunityBaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "article_id")
     private Long id;
-
-    //@Column(name = "title")
     private String title;
-
-    //@Column(name = "contents")
     private String content;
-
-    //@Column(name = "isNotice", nullable = false)
     private Boolean isNotice;
-
-    //@Column(name = "writer")
-    private Long writer;
-
-    //@Column(name = "hits", nullable = false, columnDefinition = "integer default 0")
+    private Long userId;
+    private String userName;
+    @Column(nullable = false, columnDefinition = "integer default 0")
     private Integer viewCnt;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
@@ -41,26 +33,21 @@ public class Article extends CommunityBaseTime {
     @OrderBy("updatedAt DESC")
     private List<Comment> comments;
 
-
-    public Article(Long id, String title, String content, Boolean isNotice, User user, Integer viewCnt, List<Comment> comments) {
+    @Builder
+    public Article(Long id, String title, String content, Boolean isNotice, Long userId, String userName, Integer viewCnt, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.isNotice = isNotice;
-        this.writer = user.getId();
+        this.userId = userId;
+        this.userName = userName;
         this.viewCnt = viewCnt;
         this.comments = comments;
     }
 
-    @Builder
-    public Article(Long id, String title, String content, Boolean isNotice, Long writer, Integer viewCnt, List<Comment> comments) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.isNotice = isNotice;
-        this.writer = writer;
-        this.viewCnt = viewCnt;
-        this.comments = comments;
+    public Article updateViewCnt(Integer ViewCnt) {
+        this.viewCnt = ViewCnt + 1;
+        return this;
     }
 
     public void updateArticle(String title, String content, Boolean isNotice) {
@@ -69,7 +56,7 @@ public class Article extends CommunityBaseTime {
         this.isNotice = isNotice;
     }
 
-    public void updateViewCnt() {
-        viewCnt++;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }
