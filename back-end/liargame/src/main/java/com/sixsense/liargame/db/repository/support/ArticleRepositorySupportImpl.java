@@ -21,6 +21,7 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
         Integer ViewCnt = query.select(article.viewCnt).from(article).where(article.id.eq(articleId)).fetchOne();
         ViewCnt++;
         System.out.println(ViewCnt);
+
         query.update(article)
                 .set(article.viewCnt, ViewCnt)
                 .where(article.id.eq(articleId))
