@@ -23,7 +23,7 @@ public class ArticleController {
     }
 
     @PostMapping
-    public Long createArticle(@RequestBody ArticleDetailReq article) {
+    public Article createArticle(@RequestBody ArticleDetailReq article) {
         return articleService.insertArticle(article);
     }
 

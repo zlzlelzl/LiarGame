@@ -10,7 +10,7 @@ public class ArticleDto {
     private String title;
     private String content;
     private Long userId;
-
+    private String userName;
 
     //toEntity
     public Article articleToEntity() {
@@ -18,6 +18,7 @@ public class ArticleDto {
                 .title(title)
                 .content(content)
                 .userId(userId)
+                .userName(userName)
                 .viewCnt(1)
                 .build();
     }

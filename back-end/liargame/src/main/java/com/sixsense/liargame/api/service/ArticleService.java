@@ -7,7 +7,7 @@ import com.sixsense.liargame.db.entity.Article;
 import java.util.List;
 
 public interface ArticleService {
-    Long insertArticle(ArticleDetailReq article);
+    Article insertArticle(ArticleDetailReq article);
 
     List<ArticleResp> getArticles();
 

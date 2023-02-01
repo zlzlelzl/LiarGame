@@ -16,6 +16,7 @@ public class ArticleAllReq {
     private Long id;
     private String title;
     private Long userId;
+    private String userName;
     private LocalDateTime updatedAt;
     private Integer viewCnt;
     private Boolean isNotice;
@@ -24,6 +25,7 @@ public class ArticleAllReq {
         return Article.builder()
                 .title(title)
                 .userId(userId)
+                .userName(userName)
                 .viewCnt(viewCnt)
                 .isNotice(isNotice)
                 .build();

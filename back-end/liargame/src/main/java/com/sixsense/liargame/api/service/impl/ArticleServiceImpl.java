@@ -25,9 +25,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     @Transactional
-    public Long insertArticle(final ArticleDetailReq articleDetail) {
+    public Article insertArticle(final ArticleDetailReq articleDetail) {
         Article article = articleRepository.save(articleDetail.articleToEntity());
-        return article.getId();
+        return article;
     }
 
     @Override

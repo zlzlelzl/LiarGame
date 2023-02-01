@@ -12,12 +12,14 @@ public class CommentDto {
     private Long userId;
     private String commentContent;
     private Long articleId;
+    private String userName;
 
     //commentToEntity
     public Comment commentToEntity() {
         return Comment.builder()
                 .commentContent(this.commentContent)
                 .userId(this.userId)
+                .userName(this.userName)
                 .articleId(this.articleId)
                 .build();
     }

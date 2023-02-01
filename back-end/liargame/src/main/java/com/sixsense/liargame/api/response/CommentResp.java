@@ -17,6 +17,7 @@ public class CommentResp {
     private String commentContent;
     private LocalDateTime updatedAt;
     private Long userId;
+    private String userName;
     private Long articleId;
 
     //EntityToDto
@@ -25,6 +26,7 @@ public class CommentResp {
         this.commentContent = comment.getCommentContent();
         this.updatedAt = comment.getUpdatedAt();
         this.userId = comment.getUserId();
+        this.userName = comment.getUserName();
         this.articleId = comment.getArticleId();
     }
 }
