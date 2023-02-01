@@ -38,6 +38,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Article getArticle(Long id) {
+        articleRepository.updateViewCnt(id);
+        Article article = articleRepository.findById(id).orElseThrow(null);
+        return article;
+    }
+
+    @Override
     public List<ArticleResp> getArticles() {
         Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
         List<Article> articles = articleRepository.findAll(sort);
