@@ -18,6 +18,7 @@ public class ArticleDetailReq {
     private String title;
     private String content;
     private Long userId;
+    private String userName;
     private Boolean isNotice;
     private Integer viewCnt;
     private List<Comment> comments;
@@ -27,6 +28,7 @@ public class ArticleDetailReq {
                 .title(title)
                 .content(content)
                 .userId(userId)
+                .userName(userName)
                 .isNotice(isNotice)
                 .viewCnt(viewCnt)
                 .comments(comments)

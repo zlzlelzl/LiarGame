@@ -45,9 +45,8 @@ public class Article extends CommunityBaseTime {
         this.comments = comments;
     }
 
-    public Article updateViewCnt(Integer ViewCnt) {
+    public void updateViewCnt(Integer ViewCnt) {
         this.viewCnt = ViewCnt + 1;
-        return this;
     }
 
     public void updateArticle(String title, String content, Boolean isNotice) {
@@ -59,4 +58,5 @@ public class Article extends CommunityBaseTime {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
 }

@@ -1,16 +1,9 @@
 package com.sixsense.liargame.db.repository.support;
 
-import com.querydsl.core.types.Order;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.sixsense.liargame.db.entity.Article;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Set;
+import javax.transaction.Transactional;
 
 import static com.sixsense.liargame.db.entity.QArticle.article;
 
@@ -23,30 +16,14 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
     }
 
     @Override
-    public List<Article> findByArticleSet(Set<Long> set) {
-        return query
-                .select(article)
-                .from(article)
-                .where(article.id.in(set))
-                .orderBy(new OrderSpecifier<>(Order.DESC, article.id))
-                .fetch();
-    }
-
-    @Override
     @Transactional
-    public List<Article> findByTitleContaining(String key) {
-        List<Article> articleList;
-        //articleList = ArticleRepositorySupport.findByTitleContaining(key);
-
-        //return articleList;
-        return null;
-    }
-
-    @Override
-    @Modifying
-    @Query("update Article a set a.viewCnt = a.viewCnt + 1 where a.id = :articleId")
-    public Integer updateViewCnt(Long articleId) {
-//        System.out.println(articleId);
-        return null;
+    public void updateViewCnt(Long articleId) {
+        Integer ViewCnt = query.select(article.viewCnt).from(article).where(article.id.eq(articleId)).fetchOne();
+        ViewCnt++;
+        System.out.println(ViewCnt);
+        query.update(article)
+                .set(article.viewCnt, ViewCnt)
+                .where(article.id.eq(articleId))
+                .execute();
     }
 }
