@@ -10,7 +10,8 @@
 
         <NoSql name="database">
             <MongoDb4 capped="true" collectionSize="104857600"
-                      connection="mongodb://localhost:27017/liargame.log"/>
+                      connection="mongodb+srv://***REMOVED***:***REMOVED***@***REMOVED***/***REMOVED***?authSource=admin"
+            />
         </NoSql>
     </Appenders>
 
