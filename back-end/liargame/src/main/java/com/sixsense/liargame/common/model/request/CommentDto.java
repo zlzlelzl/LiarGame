@@ -19,7 +19,6 @@ public class CommentDto {
         return Comment.builder()
                 .commentContent(this.commentContent)
                 .userId(this.userId)
-                .userName(this.userName)
                 .articleId(this.articleId)
                 .build();
     }
