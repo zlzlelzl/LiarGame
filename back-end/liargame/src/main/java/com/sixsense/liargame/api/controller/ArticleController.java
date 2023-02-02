@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -25,7 +24,7 @@ public class ArticleController {
     }
 
     @PostMapping
-    public ResponseEntity<Article> createArticle(HttpServletRequest request, @RequestBody ArticleDetailReq article) {
+    public ResponseEntity<Article> createArticle(@RequestBody ArticleDetailReq article) {
         return ResponseEntity.ok(articleService.insertArticle(article));
     }
 
