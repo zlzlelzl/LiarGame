@@ -26,8 +26,7 @@ public class ArticleController {
 
     @PostMapping
     public ResponseEntity<Article> createArticle(HttpServletRequest request, @RequestBody ArticleDetailReq article) {
-        request.getHeader()
-        return ResponseEntity.ok(articleService.insert`Article(article));
+        return ResponseEntity.ok(articleService.insertArticle(article));
     }
 
     @GetMapping("/{articleId}")
