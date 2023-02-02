@@ -5,7 +5,10 @@ import com.sixsense.liargame.api.response.ArticleResp;
 import com.sixsense.liargame.api.service.ArticleService;
 import com.sixsense.liargame.db.entity.Article;
 import com.sixsense.liargame.db.repository.ArticleRepository;
+import com.sixsense.liargame.db.repository.UserRepository;
 import lombok.Getter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -18,10 +21,13 @@ import java.util.stream.Collectors;
 @Getter
 @Service
 public class ArticleServiceImpl implements ArticleService {
+    private final UserRepository userRepository;
     private ArticleRepository articleRepository;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository,
+                              UserRepository userRepository) {
         this.articleRepository = articleRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -34,14 +40,14 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public Article getArticle(Long id) {
         articleRepository.updateViewCnt(id);
-        Article article = articleRepository.findById(id).orElseThrow(null);
-        return article;
+        return articleRepository.findById(id).orElseThrow();
     }
 
     @Override
     public List<ArticleResp> getArticles(Pageable pageable) {
-        Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
-        List<Article> articles = articleRepository.findAll(sort);
+        PageRequest pageRequest = (PageRequest) pageable;
+        pageRequest.withSort(Sort.by(Sort.Direction.DESC, "id", "updatedAt"));
+        Page<Article> articles = articleRepository.findAll(pageRequest);
         return articles.stream().map(ArticleResp::new).collect(Collectors.toList());
     }
 
