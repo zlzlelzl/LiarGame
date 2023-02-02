@@ -6,6 +6,7 @@ import com.sixsense.liargame.api.service.ArticleService;
 import com.sixsense.liargame.db.entity.Article;
 import com.sixsense.liargame.db.repository.ArticleRepository;
 import lombok.Getter;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,14 +39,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article getArticle(Long id) {
-        articleRepository.updateViewCnt(id);
-        Article article = articleRepository.findById(id).orElseThrow(null);
-        return article;
-    }
-
-    @Override
-    public List<ArticleResp> getArticles() {
+    public List<ArticleResp> getArticles(Pageable pageable) {
         Sort sort = Sort.by(Sort.Direction.DESC, "id", "updatedAt");
         List<Article> articles = articleRepository.findAll(sort);
         return articles.stream().map(ArticleResp::new).collect(Collectors.toList());
