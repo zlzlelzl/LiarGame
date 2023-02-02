@@ -5,9 +5,11 @@ import com.sixsense.liargame.api.response.ArticleResp;
 import com.sixsense.liargame.api.service.ArticleService;
 import com.sixsense.liargame.db.entity.Article;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -18,20 +20,19 @@ public class ArticleController {
 
     // get list as restful
     @GetMapping
-    public ResponseEntity<List<ArticleResp>> getArticles() {
-        return ResponseEntity.ok().body(articleService.getArticles());
+    public ResponseEntity<List<ArticleResp>> getArticles(@RequestBody Pageable pageable) {
+        return ResponseEntity.ok(articleService.getArticles(pageable));
     }
 
     @PostMapping
-    public Article createArticle(@RequestBody ArticleDetailReq article) {
-        return articleService.insertArticle(article);
+    public ResponseEntity<Article> createArticle(HttpServletRequest request, @RequestBody ArticleDetailReq article) {
+        request.getHeader()
+        return ResponseEntity.ok(articleService.insertArticle(article));
     }
 
     @GetMapping("/{articleId}")
     public ResponseEntity<?> getArticle(@PathVariable Long articleId) {
-
         Article article = articleService.getArticle(articleId);
-//        System.out.println(article.getViewCnt());
         return ResponseEntity.ok().body(article);
     }
 

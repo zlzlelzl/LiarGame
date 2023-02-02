@@ -4,6 +4,7 @@ import com.sixsense.liargame.api.request.CommentReq;
 import com.sixsense.liargame.api.response.CommentResp;
 import com.sixsense.liargame.api.service.CommentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class CommentController {
     }
 
     @GetMapping
-    public List<CommentResp> findAllComments(@PathVariable Long articleId) {
-        return commentService.findAllComments(articleId);
+    public List<CommentResp> findAllComments(@PathVariable Long articleId, @RequestBody Pageable pageable) {
+        return commentService.findAllComments(articleId, pageable);
     }
 }

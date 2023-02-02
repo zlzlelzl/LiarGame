@@ -18,12 +18,13 @@ public class ArticleRepositorySupportImpl implements ArticleRepositorySupport {
     @Override
     @Transactional
     public void updateViewCnt(Long articleId) {
-        Integer ViewCnt = query.select(article.viewCnt).from(article).where(article.id.eq(articleId)).fetchOne();
-        ViewCnt++;
-        System.out.println(ViewCnt);
-
+        Integer viewCnt =
+                query.select(article.viewCnt)
+                        .from(article)
+                        .where(article.id.eq(articleId))
+                        .fetchOne();
         query.update(article)
-                .set(article.viewCnt, ViewCnt)
+                .set(article.viewCnt, viewCnt + 1)
                 .where(article.id.eq(articleId))
                 .execute();
     }

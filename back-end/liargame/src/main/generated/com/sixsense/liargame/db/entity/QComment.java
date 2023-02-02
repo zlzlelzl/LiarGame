@@ -20,13 +20,13 @@ public class QComment extends EntityPathBase<Comment> {
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
-    public static final QComment comment1 = new QComment("comment1");
+    public static final QComment comment = new QComment("comment");
 
-    public final QTime _super = new QTime(this);
+    public final QCommunityBaseTime _super = new QCommunityBaseTime(this);
 
-    public final QArticle article;
+    public final NumberPath<Long> articleId = createNumber("articleId", Long.class);
 
-    public final StringPath comment = createString("comment");
+    public final StringPath commentContent = createString("commentContent");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
@@ -37,6 +37,8 @@ public class QComment extends EntityPathBase<Comment> {
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 
     public final QUser user;
+
+    public final NumberPath<Long> userId = createNumber("userId", Long.class);
 
     public QComment(String variable) {
         this(Comment.class, forVariable(variable), INITS);
@@ -56,7 +58,6 @@ public class QComment extends EntityPathBase<Comment> {
 
     public QComment(Class<? extends Comment> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.article = inits.isInitialized("article") ? new QArticle(forProperty("article"), inits.get("article")) : null;
         this.user = inits.isInitialized("user") ? new QUser(forProperty("user")) : null;
     }
 

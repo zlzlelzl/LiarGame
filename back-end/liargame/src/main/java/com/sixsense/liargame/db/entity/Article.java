@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @Entity
@@ -20,8 +19,11 @@ public class Article extends CommunityBaseTime {
     private String title;
     private String content;
     private Boolean isNotice;
+    @Column(name = "user_id")
     private Long userId;
-    private String userName;
+    @JoinColumn(name = "user_id", updatable = false, insertable = false)
+    @ManyToOne
+    private User user;
     @Column(nullable = false, columnDefinition = "integer default 0")
     private Integer viewCnt;
 
@@ -29,24 +31,20 @@ public class Article extends CommunityBaseTime {
 //    @JoinColumn(name = "user_id")
 //    private User user;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    @OrderBy("updatedAt DESC")
-    private List<Comment> comments;
 
     @Builder
-    public Article(Long id, String title, String content, Boolean isNotice, Long userId, String userName, Integer viewCnt, List<Comment> comments) {
+    public Article(Long id, String title, String content, Boolean isNotice, Long userId, User user, Integer viewCnt) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.isNotice = isNotice;
         this.userId = userId;
-        this.userName = userName;
+        this.user = user;
         this.viewCnt = viewCnt;
-        this.comments = comments;
     }
 
-    public void updateViewCnt(Integer ViewCnt) {
-        this.viewCnt = ViewCnt + 1;
+    public void updateViewCnt() {
+        viewCnt++;
     }
 
     public void updateArticle(String title, String content, Boolean isNotice) {
@@ -54,9 +52,4 @@ public class Article extends CommunityBaseTime {
         this.content = content;
         this.isNotice = isNotice;
     }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
 }

@@ -4,8 +4,6 @@ import com.sixsense.liargame.db.entity.Article;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -18,11 +16,8 @@ public class ArticleResp {
     private String title;
     private String content;
     private Boolean isNotice;
-    private Long userId;
     private String userName;
     private Integer viewCnt;
-    private List<CommentResp> comments;
-    private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
 
@@ -31,9 +26,7 @@ public class ArticleResp {
         this.title = article.getTitle();
         this.content = article.getContent();
         this.isNotice = article.getIsNotice();
-        this.userId = article.getUserId();
-        this.userName = article.getUserName();
-        this.comments = article.getComments().stream().map(CommentResp::new).collect(Collectors.toList());
+        this.userName = article.getUser().getName();
         this.viewCnt = article.getViewCnt();
         this.updatedAt = article.getUpdatedAt();
     }
