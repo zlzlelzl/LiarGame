@@ -15,24 +15,18 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 public class ArticleDetailReq {
-    //private Long id;
     private String title;
     private String content;
     private Long userId;
-    private String userName;
     private Boolean isNotice;
     private Integer viewCnt;
-    private List<Comment> comments;
 
     public Article articleToEntity() {
         return Article.builder()
                 .title(title)
                 .content(content)
                 .userId(userId)
-                .userName(userName)
                 .isNotice(isNotice)
-                .viewCnt(viewCnt)
-                .comments(comments)
                 .viewCnt(viewCnt)
                 .build();
     }

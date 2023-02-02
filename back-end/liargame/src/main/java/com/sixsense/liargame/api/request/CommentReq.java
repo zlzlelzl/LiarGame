@@ -11,7 +11,6 @@ import lombok.Setter;
 public class CommentReq {
     private String commentContent;
     private Long userId;
-    private String userName;
     private Long articleId;
     private String createdAt;
     private String updatedAt;
@@ -22,7 +21,6 @@ public class CommentReq {
         return Comment.builder()
                 .commentContent(commentContent)
                 .userId(userId)
-                .userName(userName)
                 .articleId(articleId)
                 .build();
     }

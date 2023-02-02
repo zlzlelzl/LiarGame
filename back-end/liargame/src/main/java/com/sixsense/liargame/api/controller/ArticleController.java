@@ -17,7 +17,6 @@ import java.util.List;
 public class ArticleController {
     private final ArticleService articleService;
 
-    // get list as restful
     @GetMapping
     public ResponseEntity<List<ArticleResp>> getArticles(@RequestBody Pageable pageable) {
         return ResponseEntity.ok(articleService.getArticles(pageable));
