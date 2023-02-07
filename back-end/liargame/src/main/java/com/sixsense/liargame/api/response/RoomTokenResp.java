@@ -1,11 +1,12 @@
 package com.sixsense.liargame.api.response;
 
-public class RoomTokenResp {
-    private Long roomId;
-    private String token;
+import lombok.Data;
 
-    public RoomTokenResp(Long roomId, String token) {
+@Data
+public class RoomTokenResp {
+    private Integer roomId;
+
+    public RoomTokenResp(Integer roomId) {
         this.roomId = roomId;
-        this.token = token;
     }
 }
