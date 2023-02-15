@@ -2,11 +2,10 @@ FROM node:14
 
 WORKDIR /root/***REMOVED***/front-end
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY ./ ./
 
 RUN npm install
 
-COPY ./ ./
+RUN npm run build
 
-CMD ["npm", "run", "build"]
+COPY ./ ./
